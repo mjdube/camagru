@@ -12,6 +12,11 @@
 
         }
     }
+    else
+    {
+        // Failed
+        header("Location: index.php")
+    }
 
 ?>
 

@@ -1,3 +1,17 @@
+<?php
+
+    if (isset($_POST['submit']))
+    {
+        include_once 'config/database.php';
+        
+    }
+    else
+    {
+        header("Location: index.php");
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +37,7 @@
             <input type="password" name="password" id="" placeholder="password"><br>
             <label for="repassword">Retype Password:</label><br>
             <input type="password" name="repassword" id="" placeholder="retype password"><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" name="submit">
         </form>
     </section>
     <footer>
