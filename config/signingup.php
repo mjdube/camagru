@@ -16,19 +16,24 @@
             header("Location: signup.php?signingup=empty");
             exit();
         }
-        if (!preg_match('/^[a-zA-Z]*$/', $first) or !preg_match('/^[a-zA-Z]*$/', $last))
+        else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username))
+        {
+            header("Location: ../signup.php?signingup=invalidemailchar");
+            exit();
+        }
+        else if (!preg_match('/^[a-zA-Z]*$/', $first) or !preg_match('/^[a-zA-Z]*$/', $last))
         {
             header("Location: signup.php?signingup=char");
             exit();
         }
-        if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) 
+        else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) 
         {
             header("Location: signup.php?signingup=email");
             exit();
         }
-        if (password_verify($pwd1, $pwd2) == false)
+        else if ($pwd1 !== $pwd2)
         {
-            header("Location: signup.php?signingup=passfail");
+            header("Location: signup.php?signingup=passwordfail");
             exit();
         }
     }
