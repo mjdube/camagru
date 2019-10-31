@@ -1,66 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Signing Up</title>
-</head>
-<body>
-    <h1>Welcome to Camagru</h1>
+<?php
+    require 'structure/header.struc.php';
+?>
     <section>
-        <h2>Sign Up</h2>
-        <form action="config/signingup.php" method="POST">
+        <h1>Sign Up</h1>
+        <form action="forms/signup.form.php" method="POST">
             <?php
-            if (isset($_POST['firstname'])) 
+            if (isset($_GET['firstname'])) 
             {
-                $first = $_POST['firstname'];
-                echo '<input type="text" name="firstname" placeholder="Firstname" value="'.$first.'"><br>';
+                $first = $_GET['firstname'];
+                echo '<input type="text" name="firstname" placeholder="Firstname" value="'.$first.'"><br><br>';
             } 
             else
-                echo '<input type="text" name="firstname" id="" placeholder="first name"><br>';
-            if (isset($_POST['lastname'])) 
+                echo '<input type="text" name="firstname" id="" placeholder="Firstname"><br><br>';
+            if (isset($_GET['lastname'])) 
             {
-                $last = $_POST['lastname'];
-                echo '<input type="text" name="lastname" placeholder="Firstname" value="'.$last.'"><br>';
+                $last = $_GET['lastname'];
+                echo '<input type="text" name="lastname" placeholder="Lastname" value="'.$last.'"><br><br>';
             } 
             else
-                echo '<input type="text" name="lastname" id="" placeholder="Lastname"><br>';
-            if (isset($_POST['username']))
+                echo '<input type="text" name="lastname" id="" placeholder="Lastname"><br><br>';
+            if (isset($_GET['email']))
             {
-                $username = $_POST['username'];
-                echo '<input type="text" name="username" placeholder="Firstname" value="'.$username.'"><br>';
+                $email = $_GET['email'];
+                echo '<input type="text" name="email" placeholder="E-mail" value="'.$email.'"><br><br>';
             }
             else
-                echo '<input type="text" name="username" id="" placeholder="Username"><br>';
+                echo '<input type="text" name="email" placeholder="E-mail"><br><br>';
             ?>
-            <label for="email">Email:</label><br>
-            <input type="text" name="email" id="" placeholder="enter email"><br>
-            <label for="password">Password:</label><br>
-            <input type="password" name="password" id="" placeholder="password"><br>
-            <label for="repassword">Retype Password:</label><br>
-            <input type="password" name="repassword" id="" placeholder="retype password"><br>
+            <input type="text" name="username" id="" placeholder="Username"><br><br>
+            <input type="password" name="password" id="" placeholder="password"><br><br>
+            <input type="password" name="repassword" id="" placeholder="retype password"><br><br>
             <input type="submit" value="Submit" name="submit">
         </form>
+        <p>Already have an account? <a href="index.php">Login</a></p>
         <?php
-        
             if (!isset($_GET['signingup']))
                 exit();
             else
             {
                 if ($_GET['signingup'] == "empty")
-                    echo '<p>Please enter fields.</p>';
-                else if ($_GET['signingup'] == "char")
-                    echo '<p>Invaild letter</p>';
-                else if ($_GET['signingup'] == "email")
-                    echo '<p>Invalid password.</p>';
-                else if ($_GET['signing'] == "passfail")
-                    echo '<p>The password do not match.</p>'
+                    echo '<p>Please enter fields!</p>';
+                else if ($_GET['signingup'] == "invalidchar")
+                    echo '<p>Invaild letter!</p>';
+                else if ($_GET['signingup'] == "invalidemail")
+                    echo '<p>Invalid email!.</p>';
+                else if ($_GET['signingup'] == "passwordfail")
+                    echo '<p>The password do not match!</p>';
             }        
         ?>
     </section>
-    <footer>
-    </footer>
-</body>
-</html>
+<?php
+    require 'structure/footer.struc.php';
+?>

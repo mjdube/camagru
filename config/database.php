@@ -5,6 +5,13 @@ $DB_USER = "root";
 $DB_PASSWORD = "Flashtruth123";
 $DB_NAME = "db_mdube";
 
-$conn = mysqli_connect($DB_DSN, $DB_USER, $DB_PASSWORD, $DB_NAME);
-if (!$conn)
-    die("Connection Failed : ". mysqli_connect_error());
+try
+{
+    $dsn = "mysqlhost:dbname=".$DB_NAME.";host=".$DB_DSN;
+    $pdo = new PDO($dsn, $DB_USER, $DB_PASSWORD);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e)
+{
+    echo "Connection failed".$e->getMessage();
+}
