@@ -40,6 +40,7 @@
         }
         else
         {
+            echo $DB_USER;
             $sql = "SELECT uid_username FROM users WHERE uid_username = ?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$username]);
@@ -55,7 +56,7 @@
                 $sql = "INSERT INTO users(uid_username, firstname, lastname, email, pword) VALUES (?,?,?,?,?)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([$username, $first, $last, $email, $hashedpwd]);
-                header("Location: index.php?success");
+                header("Location: ../index.php?success");
                 exit();
             }
         }

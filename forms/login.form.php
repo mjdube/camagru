@@ -16,7 +16,7 @@
         {
             $sql = "SELECT * FROM users WHERE  uid_users = ? OR email = ?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$]);
+            #$stmt->execute([$]);
         }
     }
     else
