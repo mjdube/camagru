@@ -2,21 +2,47 @@
 
     if (isset($_POST['login']))
     {
-        require 'config/database.php';
+        require '../config/database.php';
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $useremail = htmlspecialchars($_POST['useremail']); 
+        $password = htmlspecialchars($_POST['password']);
 
-        if (empty($email) || empty($password))
+        if (empty($useremail) || empty($password))
         {
             header("Location: ../index.php?error=empty");
             exit();
         }
         else
         {
-            $sql = "SELECT * FROM users WHERE  uid_users = ? OR email = ?";
-            $stmt = $pdo->prepare($sql);
-            #$stmt->execute([$]);
+            $sql = "SELECT * FROM users WHERE uid_username = ? OR email = ?;";
+            // $stmt->execute([$email]);
+            // $row = $stmt->fetch();
+            if (!($stmt = $pdo->prepare($sql)))
+            {
+                header("Location: ../index.php?error=sqlerror");
+                exit();
+            }
+            else 
+            {
+                $stmt->execute([$useremail, $useremail]);
+                if ($result = $stmt->fetch())
+                {
+                    $pwdCheck = password_verify($password, $result['pword']);
+                    if ($pwdCheck == false)
+                    {
+                        header("Location: ../index.php?error=wrongpwd");
+                        exit();
+                    }
+                    else if ($pwdCheck == true)
+                    {
+                        // session_start();
+                        $_SESSION['userid'] = $result['id'];
+                        $_SESSION['useruid'] = $result['uid_username'];
+                        header("Location: ../home.php?login=success");
+                        exit();
+                    }
+                }
+            }   
         }
     }
     else

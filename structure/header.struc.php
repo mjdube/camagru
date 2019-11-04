@@ -1,7 +1,5 @@
 <?php
-
     session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -14,5 +12,18 @@
 </head>
 <body>
     <header>
-        
+        <?php
+        /*
+            if ($_SESSION['uid_username'] == "" || isset($_SESSION['email']) == "")
+            {
+                echo '<ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="">Sign Up</a></li>
+                    <li><a href="">Forgot Password</a></li>
+                    </ul>'
+            }
+            else ($_SESSION['uid_username'] == )
+            {
+
+            }*/?>
     </header>

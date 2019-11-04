@@ -11,7 +11,7 @@
                 echo '<input type="text" name="firstname" placeholder="Firstname" value="'.$first.'"><br><br>';
             } 
             else
-                echo '<input type="text" name="firstname" id="" placeholder="Firstname"><br><br>';
+                echo '<input type="text" name="firstname"  placeholder="Firstname"><br><br>';
             if (isset($_GET['lastname'])) 
             {
                 $last = $_GET['lastname'];
@@ -33,19 +33,26 @@
             <input type="submit" value="Submit" name="submit">
         </form>
         <p>Already have an account? <a href="index.php">Login</a></p>
+        <p>Forgot your password? <a href="reset-password.php">Forgot Password</a></p>
         <?php
             if (!isset($_GET['signingup']))
                 exit();
             else
             {
                 if ($_GET['signingup'] == "empty")
-                    echo '<p>Please enter fields!</p>';
+                    echo '<p class="error">Please enter fields!</p>';
                 else if ($_GET['signingup'] == "invalidchar")
-                    echo '<p>Invaild letter!</p>';
+                    echo '<p class="error">Invaild characters!</p>';
                 else if ($_GET['signingup'] == "invalidemail")
-                    echo '<p>Invalid email!.</p>';
+                    echo '<p class="error">Invalid email!.</p>';
                 else if ($_GET['signingup'] == "passwordfail")
-                    echo '<p>The password do not match!</p>';
+                    echo '<p class="error">The password do not match!</p>';
+                else if ($_GET['signingup'] == "mailexist")
+                    echo '<p class="error">You using an existing e-mail!</p>';
+                else if ($_GET['signingup'] == "usererror")
+                    echo '<p class="error">Invaild characters!</p>';
+                else if ($_GET['signingup'] == "usertaken")
+                    echo '<p class="error">Invaild characters!</p>';
             }        
         ?>
     </section>

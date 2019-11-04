@@ -13,7 +13,7 @@
         $pwd1 =  htmlspecialchars($_POST['password']);
         $pwd2 = htmlspecialchars($_POST['repassword']);
 
-        if (empty($first) or empty($last) or empty($username) or empty($email) or empty($pwd1) or empty($pwd2))
+        if (empty($first) || empty($last) || empty($username) || empty($email) || empty($pwd1) || empty($pwd2))
         {
             header("Location: ../signup.php?signingup=empty&firstname=".$first."&lastname=".$last);
             exit();
@@ -23,12 +23,27 @@
             header("Location: ../signup.php?signingup=invalidchar");
             exit();
         }
-        else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) 
+        else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false || filter_var($email, FILTER_VALIDATE_EMAIL) == true) 
         {
-            header("Location: ../signup.php?signingup=invalidemail&firstname=".$first."&lastname=".$last);
-            exit();
+            if (filter_var($email, FILTER_VALIDATE_EMAIL) == true)
+            {
+                $sql1 = "SELECT email FROM users WHERE email = ?";
+                $stmt1 = $pdo->prepare($sql1);
+                $stmt1->execute([$email]);
+                $row1 = $stmt1->fetch();
+                if ($row1 > 0)
+                {
+                    header("Location: ../signup.php?signingup=mailexist&firstname=".$first."&lastname=".$last);
+                    exit();
+                }
+            }
+            else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false)
+            {
+                header("Location: ../signup.php?signingup=invalidemail&firstname=".$first."&lastname=".$last);
+                exit();
+            }
         }
-        else if (!preg_match("/^[a-zA-Z0-9]*$/", $username))
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $username))
         {
             header("Location: ../signup.php?signingup=usererror&email=".$email."&firstname=".$first."&lastname=".$last);
             exit();
@@ -40,14 +55,13 @@
         }
         else
         {
-            echo $DB_USER;
             $sql = "SELECT uid_username FROM users WHERE uid_username = ?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$username]);
             $row = $stmt->fetch();
             if ($row > 0)
             {
-                header("Location: ../signup.php?signingup=userTaken");
+                header("Location: ../signup.php?signingup=userTaken&firstname=".$first."&lastname=".$last."&email=".$email);
                 exit();
             }
             else
@@ -63,6 +77,6 @@
     }
     else
     {
-        header("Location: signup.php");
+        header("Location: ../signup.php");
         exit();
     }
