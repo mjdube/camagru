@@ -3,8 +3,9 @@
     if (isset($_POST['submit']))
     {
         include_once '../config/database.php';
-        // $pdo = new PDO($dsn, $DB_USER, $DB_PASSWORD);
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $first = htmlspecialchars($_POST['firstname']);
         $last =  htmlspecialchars($_POST['lastname']);

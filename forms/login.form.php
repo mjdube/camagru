@@ -4,9 +4,12 @@
     {
         require '../config/database.php';
 
+        $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
         $useremail = htmlspecialchars($_POST['useremail']); 
         $password = htmlspecialchars($_POST['password']);
-
+        
         if (empty($useremail) || empty($password))
         {
             header("Location: ../index.php?error=empty");

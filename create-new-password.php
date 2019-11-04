@@ -20,7 +20,7 @@
                 <input type="hidden" name="validator" value="<?php echo $validator ?>">
                 <input type="password" name="pwd" placeholder="Enter a new password...">
                 <input type="password" name="pwd-repeat" placeholder="Repeat new password...">
-                <input type="submit" value="Reset Password" name="reset-password-submit">
+                <input type="submit" value="Reset password" name="reset-password-submit">
             </form>
             <?php
         }

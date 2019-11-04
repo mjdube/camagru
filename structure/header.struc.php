@@ -1,5 +1,8 @@
 <?php
     session_start();
+
+    // $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
+    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
 
 <!DOCTYPE html>
