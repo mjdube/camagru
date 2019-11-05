@@ -2,6 +2,8 @@
 
     if (isset($_POST['login']))
     {
+        session_start();
+        
         require '../config/database.php';
 
         $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
