@@ -15,18 +15,29 @@
 </head>
 <body>
     <header>
-        <?php
-        /*
-            if ($_SESSION['uid_username'] == "" || isset($_SESSION['email']) == "")
-            {
-                echo '<ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="">Sign Up</a></li>
-                    <li><a href="">Forgot Password</a></li>
-                    </ul>'
-            }
-            else ($_SESSION['uid_username'] == )
-            {
-
-            }*/?>
+       <nav>
+           <ul>
+               <li><a href="home.php">Home</a></li>
+               <li><a href="profile.php">Profile</a></li>
+           </ul>
+           <div>
+               <?php
+                    if (isset($_SESSION['userid']))
+                    {
+                        echo '<form action="includes/logout.inc.php" method="post">
+                        <input type="submit" name="logout" value="Login" >
+                         </form>';
+                    }
+                    else 
+                    {
+                        echo '<form action="forms/login.form.php" method="post">
+                        <input type="text" name="useremail" placeholder="Email...">
+                        <input type="password" name="password" placeholder="Password...">
+                        <input type="submit" name="login" value="Login" >
+                        </form>';
+                    }
+               
+               ?>
+           </div>
+       </nav>
     </header>

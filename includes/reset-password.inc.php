@@ -2,6 +2,7 @@
 
     if (isset($_POST['reset-password-submit']))
     {
+        include_once '../config/database.php';
         $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
@@ -15,7 +16,7 @@
             header("Location: ../create-new-password.php?newpwd=empty");
             exit();
         }
-        else if ($password != $passwordRepeat)
+        else if ($password !== $passwordRepeat)
         {
             header("Location: ../create-new-password.php?newpwd=empty");
             exit();
@@ -68,9 +69,8 @@
                             $sql = "UPDATE users SET pwdUsers = ? WHERE email = ?";
                             $stmt = $pdo->prepare($sql);
                             $stmt->execute([$newPwd, $tokenEmail]);
-
                             $sql = "DELETE FROM pwdRest WHERE pwdResetEmail = ?";
-                            if (!($stmt = $pdo->prepare()))
+                            if (!($stmt = $pdo->prepare($sql)))
                             {
                                 echo "There was an error";
                                 exit();

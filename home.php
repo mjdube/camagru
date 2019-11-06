@@ -1,22 +1,24 @@
 <?php
     require 'structure/header.struc.php';
-?>
-
-    <?php
+        
         if (isset($_SESSION['userid']))
         {
-            ?>
-            <button type="submit" name="logout">logout</button>
-            <?php
+            
+
+?>
+
+            
+
+<?php
+
             
         }
         else 
         {
-            header("Locatioon: index.php?login=Errorloggedin");
+            header("Locatioon: index.php?");
             exit();
         }
-    ?>
 
-<?php
+
     require 'structure/footer.struc.php';
 ?>

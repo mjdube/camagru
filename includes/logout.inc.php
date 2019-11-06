@@ -1,6 +1,6 @@
 <?php
 
     session_start();
-    unset($_SESSION);
-    var_dump($_SESSION);
+    session_unset();
+    session_destroy();
     header("Location: ../index.php?logout");

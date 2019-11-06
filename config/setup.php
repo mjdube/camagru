@@ -65,7 +65,8 @@
             id int NOT NULL,
             FOREIGN KEY (id) REFERENCES users(id),
             imgName LONGTEXT NOT NULL,
-            orderImg LONGTEXT NOT NULL
+            orderImg LONGTEXT NOT NULL,
+            imgDateTime DATE
         );";
         $pdo->exec($sql);
     }

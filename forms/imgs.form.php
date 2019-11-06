@@ -57,6 +57,7 @@ error_reporting(E_ALL);
                         // $result = $stmt->fetch();
                         $rowCount = $stmt->rowCount();
                         $setImgOrder = $rowCount + 1;
+                        
                         $sql = "INSERT INTO images (id, imgName, orderImg) VALUES (?,?,?)";
                         if (!($stmt = $pdo->prepare($sql)))
                         {

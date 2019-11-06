@@ -2,7 +2,7 @@
 
     if (isset($_POST['login']))
     {
-        session_start();
+        
         
         require '../config/database.php';
 
@@ -40,9 +40,11 @@
                     }
                     else if ($pwdCheck == true)
                     {
-                        // session_start();
+                        // setting up the session when the user exist and password is correct
+                        session_start();
                         $_SESSION['userid'] = $result['id'];
                         $_SESSION['useruid'] = $result['uid_username'];
+                        // head in 
                         header("Location: ../home.php?login=success");
                         exit();
                     }

@@ -19,6 +19,16 @@
             <input type="password" name="password" id="password"><br><br>
             <input type="submit" name="login" value="Login" >
         </form>
+        <?php
+            if (isset($_SESSION['userid']))
+            {
+                echo '<p class="">You are logged in!</p>';
+            }
+            else
+            {
+                echo '<p class="">You are logged out!</p>';
+            }
+        ?>
         <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
         <p>Forgot your password? <a href="">Forgot Password</a></p>
     </section>

@@ -1,9 +1,18 @@
 <?php
     require 'structure/header.struc.php';
-?>
 
-    <div>
-        <?php
+    
+        if (isset($_SESSION['userid']))
+        {
+            ?>
+            <div class="profile-pic">
+                <a href="editprofile.php">
+                    
+                </a>
+            </div>
+            <h3 class="profile-username"> </h3>
+            <?php
+            echo '<div>';
             include_once 'config/database.php';
             $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -48,15 +57,18 @@
                 //     $rowCount--;
                 }
             }
-        ?>
-    </div>
+        
+            echo '</div>
+            <form action="forms/imgs.form.php" method="post" enctype="multipart/form-data">
+            <input type="text" name="imgName">
+            <input type="file" name="file">
+            <input type="submit" value="UPLOAD" name="submit">
+            </form>';
+        }
+        else
+        {
+            header("Location: index.php");
 
-    <form action="forms/imgs.form.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="imgName">
-        <input type="file" name="file">
-        <input type="submit" value="UPLOAD" name="submit">
-    </form>
-
-<?php
+        }
     require 'structure/footer.struc.php';
 ?>
