@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../includes/TakeIt.css" type="text/css">
     <title>Camagru</title>
 </head>
 <body>
@@ -25,7 +26,7 @@
                     if (isset($_SESSION['userid']))
                     {
                         echo '<form action="includes/logout.inc.php" method="post">
-                        <input type="submit" name="logout" value="Login" >
+                        <input type="submit" name="logout" value="Logout" >
                          </form>';
                     }
                     else 

@@ -5,11 +5,13 @@
         if (isset($_SESSION['userid']))
         {
             ?>
-            <div class="profile-pic">
+            
                 <a href="editprofile.php">
-                    
+                <div class="profile-pic">
+
+                </div>
                 </a>
-            </div>
+            
             <h3 class="profile-username"> </h3>
             <?php
             echo '<div>';
@@ -36,7 +38,7 @@
         // </a>';
         // }
                 $stmt->execute();
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // $results = $stmt->fetch(PDO::FETCH_ASSOC);
                 // while ($rowCount = $stmt->rowCount())
                 // {
                 //     echo '<a href="">
@@ -47,14 +49,19 @@
                 //     </a>';
                 //     $rowCount--;
                 // }
-                foreach ($result as $results)
+                while ($results = $stmt->fetch(PDO::FETCH_ASSOC))
                 {
-                    echo '<a href="">
-                //         <div style="background-image: url(uploads/'.$result['imgName'].');height:500px;">
-                //             <p>'.$result['descGallery'].'</p>
-                //         </div>
-                //     </a>';
-                //     $rowCount--;
+                    echo '
+                    <div class="container-profile">
+                        <div class="box">
+                            <a href="">
+                                <div style="background-image: url(uploads/'.$results['imgName'].');height:500px;">
+                                    <p>'.$results['descGallery'].'</p>
+                                </div>
+                            </a>
+                        </div>
+                     </div>
+                     ';
                 }
             }
         
