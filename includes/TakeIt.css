@@ -6,8 +6,5 @@
 
 .box{
     flex: 1;
-}
-
-header nav ul li {
-    list-style-type: none;
+    width: 30%;
 }

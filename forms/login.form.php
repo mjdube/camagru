@@ -1,8 +1,9 @@
 <?php
 
+if ($_SESSION['userid'])
+{
     if (isset($_POST['login']))
     {
-        
         
         require '../config/database.php';
 
@@ -54,6 +55,12 @@
     }
     else
     {
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     }
+}
+else
+{
+    header("Location: ../index.php?notvaliduser");
+    exit();
+}

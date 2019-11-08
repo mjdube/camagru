@@ -1,5 +1,10 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
     if (isset($_POST['submit']))
     {
         include_once '../config/database.php';
@@ -67,11 +72,29 @@
             }
             else
             {
+                // Hashed password
                 $hashedpwd = password_hash($pwd1, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO users(uid_username, firstname, lastname, email, pword) VALUES (?,?,?,?,?)";
+
+                // verify email 
+                $vKey = md5(time().$username);
+
+                // Sql code
+                $sql = "INSERT INTO users(uid_username, firstname, lastname, email, pword, vkey) VALUES (?,?,?,?,?,?)";
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([$username, $first, $last, $email, $hashedpwd]);
-                header("Location: ../index.php?success");
+                $stmt->execute([$username, $first, $last, $email, $hashedpwd, $vKey]);
+                
+                // For email verification
+                $to = $email;
+                $subject = "Email Verfication";
+                $message = "<a href='http://localhost/camagru/verifyemail.php?vkey=$vKey'>Register Account</a>";
+                $headers = "From: mdube@student.wethinkcode.co.za";
+                $headers .= "MIME-Version: 1.0"."\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+                
+                // Send to a email...
+                mail($to, $subject, $message,$headers);
+                
+                header("Location: ../thankyou.php?success");
                 exit();
             }
         }

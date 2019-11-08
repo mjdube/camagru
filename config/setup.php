@@ -7,7 +7,6 @@
     {
         $sql = "CREATE DATABASE IF NOT EXISTS db_mdube";
         $pdo->exec($sql);
-        echo "Successfully created"."<br>";
     }
     catch (PDOException $e)
     {
@@ -28,10 +27,10 @@
             lastname VARCHAR(100) NOT NULL, 
             email VARCHAR(100) NOT NULL,
             pword VARCHAR(200) NOT NULL,
+            vkey VARCHAR(100) NOT NULL,
             verify BIT DEFAULT 0
         );";
         $pdo->exec($sql);
-        echo " Created users table successfully..."."<br>";
     }
     catch (PDOException $e)
     {

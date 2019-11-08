@@ -22,11 +22,13 @@
         <?php
             if (isset($_SESSION['userid']))
             {
-                echo '<p class="">You are logged in!</p>';
+                if ($_GET['logout'] == "out")
+                    echo '<p class="">You are logged in!</p>';
             }
             else
             {
-                echo '<p class="">You are logged out!</p>';
+                if ($_GET['logout'] == "in")
+                    echo '<p class="">You are logged out!</p>';
             }
         ?>
         <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
@@ -35,9 +37,10 @@
     <?php
         if (!isset($_GET['error']))
             exit();
-        else
-            if ($_GET['error'] == "useremailpassword")
+        else if ($_GET['error'] == "useremailpassword")
                 echo '<p class="error" >Incorrect username/email or password!</p>';
+        if (isset($_GET['success']))
+            echo 'Check email to verify';
     ?>
 <?php
     require 'structure/footer.struc.php';

@@ -27,7 +27,7 @@ error_reporting(E_ALL);
         $fileError = $file['error'];
         $fileSize = $file['size'];
         
-        //
+        // Sepate filename into an array
         $fileExt = explode(".", $fileName);
         // get The extension name
         $fileActualExt = strtolower(end($fileExt));
