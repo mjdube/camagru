@@ -33,7 +33,7 @@
             <input type="submit" value="Submit" name="submit">
         </form>
         <p>Already have an account? <a href="index.php">Login</a></p>
-        <p>Forgot your password? <a href="reset-password.php">Forgot Password</a></p>
+        <p>Forgot your password? <a href="forgotpassword.php">Forgot Password</a></p>
         <?php
             if (!isset($_GET['signingup']))
                 exit();

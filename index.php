@@ -22,17 +22,15 @@
         <?php
             if (isset($_SESSION['userid']))
             {
-                if ($_GET['logout'] == "out")
-                    echo '<p class="">You are logged in!</p>';
+                 echo '<p class="">You are logged in!</p>';
             }
             else
             {
-                if ($_GET['logout'] == "in")
-                    echo '<p class="">You are logged out!</p>';
+                echo '<p class="">You are logged out!</p>';
             }
         ?>
         <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
-        <p>Forgot your password? <a href="">Forgot Password</a></p>
+        <p>Forgot your password? <a href="forgotpassword.php">Forgot Password</a></p>
     </section>
     <?php
         if (!isset($_GET['error']))
@@ -41,6 +39,26 @@
                 echo '<p class="error" >Incorrect username/email or password!</p>';
         if (isset($_GET['success']))
             echo 'Check email to verify';
+
+        if (isset([$_GET['verifyemail']]))
+        {
+            if ($_GET['verifyemail'] == "success")
+                echo '<p>Email verified, you may now login.</p>';
+            if ($_GET['verifyemail'] == "somethingwrong")
+                echo '<p>Please try again.</p>';
+            if ($_GET['verifyemail'] == "already")
+                echo '<p>The account already verified.</p>';
+            if ($_GET['verifyemail'] == "notverified")
+                echo '<p>Something is wrong</p>';
+        }
+
+        if (isset($_GET['passchange']))
+        {
+            if ($_GET['passchange'] == "y")
+                echo '<p>Password Changed</p>';
+            if ($_GET['passchange'] == "n")
+                echo '<p>Please try again!</p>';
+        }
     ?>
 <?php
     require 'structure/footer.struc.php';

@@ -46,7 +46,7 @@ if ($_SESSION['userid'])
                         $_SESSION['userid'] = $result['id'];
                         $_SESSION['useruid'] = $result['uid_username'];
                         // head in 
-                        header("Location: ../home.php?login=success");
+                        header("Location: ../home.php?login=success&log=in");
                         exit();
                     }
                 }

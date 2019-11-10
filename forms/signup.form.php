@@ -1,10 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
     if (isset($_POST['submit']))
     {
         include_once '../config/database.php';
@@ -84,16 +84,16 @@ error_reporting(E_ALL);
                 $stmt->execute([$username, $first, $last, $email, $hashedpwd, $vKey]);
                 
                 // For email verification
-                $to = $email;
                 $subject = "Email Verfication";
                 $message = "<a href='http://localhost/camagru/verifyemail.php?vkey=$vKey'>Register Account</a>";
-                $headers = "From: mdube@student.wethinkcode.co.za";
+                $headers = "From: sirmj.dube@gmail.com";
                 $headers .= "MIME-Version: 1.0"."\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
                 
                 // Send to a email...
-                mail($to, $subject, $message,$headers);
-                
+                $result = mail($email, $subject, $message,$headers);
+                // var_dump($result);
+
                 header("Location: ../thankyou.php?success");
                 exit();
             }

@@ -1,12 +1,15 @@
 <?php
     session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
+    // Checking my errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+if ($_SESSION['userid'])
+{
     if (isset($_POST['submit']))
     {
         $newFileName = $_POST['imgName'];
@@ -29,9 +32,12 @@ error_reporting(E_ALL);
         
         // Sepate filename into an array
         $fileExt = explode(".", $fileName);
-        // get The extension name
+        
+        // Get The extension name
         $fileActualExt = strtolower(end($fileExt));
         $allowed = array("jpg", "jpeg", "png");
+        
+        // Check if extension exist 
         if (in_array($fileActualExt, $allowed))
         {
             if ($fileError == 0)
@@ -88,3 +94,8 @@ error_reporting(E_ALL);
             echo "You need to upload a proper file type";
         }
     }
+}
+else 
+{
+    echo 'Error';
+}
