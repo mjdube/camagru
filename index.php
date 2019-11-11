@@ -40,7 +40,8 @@
         if (isset($_GET['success']))
             echo 'Check email to verify';
 
-        if (isset([$_GET['verifyemail']]))
+
+        else if ([$_GET['verifyemail']] !== NULL)
         {
             if ($_GET['verifyemail'] == "success")
                 echo '<p>Email verified, you may now login.</p>';

@@ -91,9 +91,9 @@
                 $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
                 
                 // Send to a email...
-                $result = mail($email, $subject, $message,$headers);
-                // var_dump($result);
+                mail($email, $subject, $message, $headers);
 
+                // var_dump($result);
                 header("Location: ../thankyou.php?success");
                 exit();
             }

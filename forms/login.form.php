@@ -1,7 +1,5 @@
 <?php
 
-if ($_SESSION['userid'])
-{
     if (isset($_POST['login']))
     {
         
@@ -58,9 +56,3 @@ if ($_SESSION['userid'])
         header("Location: ../index.php");
         exit();
     }
-}
-else
-{
-    header("Location: ../index.php?notvaliduser");
-    exit();
-}

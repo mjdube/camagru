@@ -4,6 +4,7 @@
 
 
         <form action="config/createnewpass.form.php" method="post">
+            <input type="email" name="email" value="<?php echo $_GET['email'] ?>">
             <label for="change1">Create new password:</label> <br> <br>
             <input type="password" name="pwd1" id="change1">
             <label for="change2">Retype new password:</label> <br> <br>

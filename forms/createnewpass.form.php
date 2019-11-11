@@ -1,38 +1,57 @@
 <?php
 
 include_once '../config/setup.php';
-include_once 'forgot.form.php';
 
-    if (isset($_POST['change-pass']))
+    $email = htmlspecialchars($_POST['email']);
+    
+    if (!isset($email))
     {
-        $pwd1 = htmlspecialchars($_POST['pwd1']);
-        $pwd2 = htmlspecialchars($_POST['pwd2']);
-
-        if ($pwd1 === $pwd2)
+        if (isset($_POST['change-pass']))
         {
-            $sql = "SELECT vkey FROM users WHERE vkey = {$result['vkey']}";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $verify = $row['vkey'];
-            if ($verify === 1)
+            // $email = htmlspecialchars($_GET['email']);
+            $pwd1 = htmlspecialchars($_POST['pwd1']);
+            $pwd2 = htmlspecialchars($_POST['pwd2']);
+
+            if (filter_var($email, FILTER_VALIDATE_EMAIL))
             {
-                $hashedpwd = password_hash($pwd1, PASSWORD_DEFAULT);
-                $sql = "UPDATE users SET pword = ? WHERE email = {$result['email']}";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute([$hashedpwd]);
-                header("Location: ../index.php?passchange=y");
-                exit();
+                if ($pwd1 === $pwd2)
+                {
+                    $sql = "SELECT vkey FROM users WHERE email = ?";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute([$email]);
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $verify = $row['vkey'];
+                    print_r($verify);
+                    if ($verify === 1)
+                    {
+                        $hashedpwd = password_hash($pwd1, PASSWORD_DEFAULT);
+                        $sql = "UPDATE users SET pword = ? WHERE email = {$result['email']}";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute([$hashedpwd]);
+                        header("Location: ../index.php?passchange=y");
+                        exit();
+                    }
+                    else 
+                    {
+                        header("Location: ../createnewpass.php?passchange=n");
+                        exit();
+                    }
+                }
+                else
+                {
+                    header("Location: ../createnewpass.php?ok=passwordnotmatch");
+                    exit();
+                }
             }
             else 
             {
-                header("Location: ../createnewpass.php?passchange=n");
+                header("Location: ../createnewpass.php?ok=passwordnotmatch");
                 exit();
             }
         }
-        else 
-        {
-            header("Location: ../createnewpass.php?passwordnotmatch");
-            exit();
-        }
+    }
+    else
+    {
+        header("Location: ../signup.php?signup=signup");
+        exit();
     }

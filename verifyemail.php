@@ -8,7 +8,6 @@
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch();
-
         if ($result == 1)
         {
             $sql = "UPDATE users SET verify = 1 WHERE vkey = '$vkey' LIMIT 1 ";
