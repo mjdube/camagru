@@ -2,7 +2,7 @@
     require 'structure/header.struc.php';
 
     
-        if (isset($_SESSION['userid']))
+        if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
         {
             ?>
             <a href="editprofile.php"></a>
@@ -37,8 +37,8 @@
             echo '</div>
             <form action="forms/imgs.form.php" method="post" enctype="multipart/form-data">
             <input type="text" name="imgName">
-            <input type="file" name="file">
-            <input type="submit" value="UPLOAD" name="submit">
+            <input type="file" name="file" required>
+            <input type="submit" value="UPLOAD" name="submit" >
             </form>';
         }
         else

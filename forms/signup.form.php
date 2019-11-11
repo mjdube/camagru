@@ -83,24 +83,31 @@
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([$username, $first, $last, $email, $hashedpwd, $vKey]);
                 
+                $to = $email;
+
                 // For email verification
                 $subject = "Email Verfication";
-                $message = "<a href='http://localhost/camagru/verifyemail.php?vkey=$vKey'>Register Account</a>";
+                $message = "<a href='http://localhost:8080/camagru/verifyemail.php?vkey=$vKey'>Register Account</a>";
                 $headers = "From: sirmj.dube@gmail.com";
                 $headers .= "MIME-Version: 1.0"."\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
                 
                 // Send to a email...
-                mail($email, $subject, $message, $headers);
+                $mail = mail($to, $subject, $message, $headers);
+                // if($mail){
+                //     echo "Wassip";
+                // }else{
+                //     echo "messed up";
+                // }
 
-                // var_dump($result);
+                var_dump($result);
                 header("Location: ../thankyou.php?success");
                 exit();
             }
         }
     }
-    else
-    {
-        header("Location: ../signup.php");
-        exit();
-    }
+    // else
+    // {
+    //     header("Location: ../signup.php");
+    //     exit();
+    // }

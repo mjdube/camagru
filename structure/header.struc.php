@@ -11,37 +11,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../includes/TakeIt.css" >
-    <script type="text/javascript">
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
-
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-        if (navigator.getUserMedia) {
-            navigator.getUserMedia({video:true}, streamWebCam, throwError);
-        }
-        function streamWebCam (stream) {
-            video.src = window.URL.createObjectURL(stream);
-            video.play();
-        }
-        function throwError (e) {
-            alert(e.name);
-        }
-        function snap () {
-            canvas.width = video.clientWidth;
-            canvas.height = video.clientHeight;
-            context.drawImage(video, 0, 0);
-        }
-    </script>
+    <link rel="stylesheet" href="includes/TakeIt.css" >
+    <!-- <script type="text/javascript" src="includes/main.js"></script> -->
     <title>Camagru</title>
 </head>
 <body>
     <header>
        <nav>
                <?php
-                    if (isset($_SESSION['userid']))
+                    if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
                     {
                         echo'
                         <ul>

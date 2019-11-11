@@ -1,4 +1,9 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
     if (isset($_POST['submit_forgot']))
     {
@@ -15,17 +20,17 @@
             if ($result['email'] === $email)
             {
                 $vKey = md5(time().$result['uid_username']);
-                $sql = "UPDATE users SET vkey = ? WHERE username = {$result['uid_username']} ";
+                $sql = "UPDATE users SET vkey = '$vKey' WHERE uid_username = ?";
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute($vKey);
+                $stmt->execute([$result['uid_username']]);
 
                 $subject = "Forgot Password";
-                $message = "<a href='http://localhost/camagru/createnewpass.php?vkey=$vKey&email=$email>Create New Password</a>";
+                $message = "<a href='http://localhost:8080/camagru/createnewpass.php?vkey=$vKey&email=$email'>Forgot Password</a>";
                 $headers = "From: sirmj.dube@gmail.com";
                 $headers .= "MIME-Version: 1.0"."\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
                 mail($result['email'], $subject, $message, $headers);
-                header("Location: ../forgotpassword.php?success");
+                header("Location: ../index.php?vkey=$vKey&email=$email'");
             }
             else 
             {

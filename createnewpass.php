@@ -1,19 +1,28 @@
 <?php
+
     require 'structure/header.struc.php';
-?>
 
 
-        <form action="config/createnewpass.form.php" method="post">
-            <input type="email" name="email" value="<?php echo $_GET['email'] ?>">
-            <label for="change1">Create new password:</label> <br> <br>
+        // <!-- <form action="forms/createnewpass.form.php" method="get">
+        //     <input type="email" name="email" value="<?php //echo $_GET['email'] 
+        //<!-- // </form> --> 
+
+        echo '<form action="forms/createnewpass.form.php?vkey='.$_GET['vkey'].'" method="post">
+            <input type="email" name="email" value="'.$_GET['email'].'">
+
+            <br> <br>
+            <label for="change1">Create new password:</label>
+             <br> <br>
             <input type="password" name="pwd1" id="change1">
-            <label for="change2">Retype new password:</label> <br> <br>
+            <br> <br>
+            <label for="change2">Retype new password:</label>
+             <br> <br>
             <input type="password" name="pwd2" id="change2">
             <br> <br>
-            <input type="button" value="Submit" name="change-pass">
-        </form>
+            <input type="submit" value="change" name="change">
+        </form>';
 
 
-<?php
+
     require 'structure/footer.struc.php';
 ?>

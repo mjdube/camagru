@@ -43,6 +43,7 @@
                         session_start();
                         $_SESSION['userid'] = $result['id'];
                         $_SESSION['useruid'] = $result['uid_username'];
+                        $_SESSION['is_verified'] = $result['verify'];
                         // head in 
                         header("Location: ../home.php?login=success&log=in");
                         exit();

@@ -20,7 +20,7 @@
             <input type="submit" name="login" value="Login" >
         </form>
         <?php
-            if (isset($_SESSION['userid']))
+            if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
             {
                  echo '<p class="">You are logged in!</p>';
             }
