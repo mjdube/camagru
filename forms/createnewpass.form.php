@@ -8,8 +8,8 @@ include_once '../config/setup.php';
 
     // $email = htmlspecialchars($_POST['email']);
     
-    // if (!isset($email))
-    // {
+    if (!isset($email))
+    {
         if (isset($_POST['change']))
         {
             $vkey = htmlspecialchars($_GET['vkey']);
@@ -54,9 +54,9 @@ include_once '../config/setup.php';
                 exit();
             }
         }
-    // }
-    // else
-    // {
-    //     header("Location: ../signup.php?signup=signup");
-    //     exit();
-    // }
+    }
+    else
+    {
+        header("Location: ../signup.php?signup=signup");
+        exit();
+    }

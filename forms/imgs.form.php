@@ -8,8 +8,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-// if ($_SESSION['userid'])
-// {
+
+if ($_SESSION['userid'])
+{
     if (isset($_POST['submit']))
     {
         $newFileName = $_POST['imgName'];
@@ -61,10 +62,7 @@ error_reporting(E_ALL);
                     {
                         $stmt->execute();
                         // $result = $stmt->fetch();
-                        $rowCount = $stmt->rowCount();
-                        $setImgOrder = $rowCount + 1;
-                        
-                        $sql = "INSERT INTO images (id, imgName, orderImg) VALUES (?,?,?)";
+                        $sql = "INSERT INTO images (id, imgName) VALUES (?,?)";
                         if (!($stmt = $pdo->prepare($sql)))
                         {
                             echo "Sql error2";
@@ -94,28 +92,38 @@ error_reporting(E_ALL);
             echo "You need to upload a proper file type";
         }
     }
-// }
-// else 
-// {
-//     echo 'Error';
-// }
+    else if (isset($_POST['photo-submit']))
+    {
+        $img = explode(",", $_POST['photo']);
+        $imgData = $img[1];
+        $imgData = base64_decode($imgData);
+        include_once '../config/setup.php';
+        $sql = "INSERT INTO images (id, imgName) VALUES (?,?)";
+        $stmt = $pdo->prepare($sql);
+        $id = intval($_SESSION['userid']);
+        $stmt->execute([$id, $imgData]);
+        header("Location: ../home.php");
+        exit();
+    }
+    else 
+    {
+        header("Location: ../home.php");
+        exit();
+    }
+}
+else 
+{
+    echo 'Error';
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//         isset($_POST['snap'])){
+//         $img = explode("," ,$_POST['img']);
+//         $imgdata = $img[1];
+//         $imgdata = base64_decode($imgdata);
+// ​
+//         $sql = "INSERT INTO img (`image`) VALUES (?)";
+//         $stmt = $conn->prepare($sql);
+//         $stmt->execute([$imgdata]);
 
 //                   storing actual images on the data tuturial
 

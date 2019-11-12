@@ -2,11 +2,12 @@
     require 'structure/header.struc.php';
 
     
-        // if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
-        // {
+        if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
+        {
             ?>
             <a href="editprofile.php"></a>
-            <h3 class="profile-username"> Username <------ </h3>
+            <!--  Display username -->
+            <h3 class="profile-username">Username</h3>
             <?php
             echo '<div>';
             include_once 'config/database.php';
@@ -24,7 +25,7 @@
                 while ($results = $stmt->fetch(PDO::FETCH_ASSOC))
                 {
                     echo '
-                    <div class="container-profile">
+                    <div class="container">
                         <div class="box" style="background-image: url(uploads/'.$results['imgName'].');height:100px;">
                             <a href="">
                                     <p>'.$results['descGallery'].'</p>
@@ -40,12 +41,12 @@
             <input type="file" name="file" required>
             <input type="submit" value="UPLOAD" name="submit" >
             </form>';
-        // }
-        // else
-        // {
-        //     header("Location: index.php");
+        }
+        else
+        {
+            header("Location: index.php");
 
-        // }
+        }
     require 'structure/footer.struc.php';
 ?>
 

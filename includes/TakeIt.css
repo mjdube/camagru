@@ -1,10 +1,22 @@
+* {
+    border: #ccc solid 1px;
+}
+
+body {
+    margin: 0;
+}
+
 .container div{ 
     display: flex;
-    border: 1px #ccc solid;
+    /* border: 1px #ccc solid; */
+    /* border: solid black 1px; */
     padding: 10px;
 }
 
+
+
 .box{
+    /* border: solid black 2px; */
     flex: 1;
     width: 30%;
 }
@@ -38,15 +50,26 @@
     width: 350px;
 }
 
+/* .booth-capture-button */
+
 .camera {
     display: flex;
-    
     justify-content: center;
     align-items: center;
 }
+
+
+
+input[type=submit] {
+    color: #fff;
+    border: none;
+    background-color: cornflowerblue;
+}
+
 
 /* #canvas {
     position: absolute;
     top : 97px;
     z-index: +1;
 } */
+

@@ -3,7 +3,7 @@
 $DB_DSN = "mysql:host=localhost;";
 $DB_dsn = "mysql:host=localhost;dbname=db_mdube";
 $DB_USER = "root";
-$DB_PASSWORD = "";
+$DB_PASSWORD = "Flashtruth123";
 $DB_NAME = "db_mdube";
 
 try

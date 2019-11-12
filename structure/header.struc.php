@@ -19,8 +19,8 @@
     <header>
        <nav>
                <?php
-                    // if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
-                    // {
+                    if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
+                    {
                         echo'
                         <ul>
                             <li><a href="home.php">Home</a></li>
@@ -30,15 +30,18 @@
                         <form action="includes/logout.inc.php" method="post">
                         <input type="submit" name="logout" value="Logout" >
                          </form>';
-                    // }
-                    // else 
-                    // {
-                        echo '<form action="forms/login.form.php" method="post">
+                    }
+                    else 
+                    {
+                        echo '
+                        
+                        
+                        <form action="forms/login.form.php" method="post">
                         <input type="text" name="useremail" placeholder="Email...">
                         <input type="password" name="password" placeholder="Password...">
                         <input type="submit" name="login" value="Login" >
                         </form>';
-                    // }
+                    }
                ?>
            </div>
        </nav>

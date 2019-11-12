@@ -1,5 +1,11 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
     if (isset($_POST['login']))
     {
         
@@ -48,6 +54,10 @@
                         header("Location: ../home.php?login=success&log=in");
                         exit();
                     }
+                }
+                else 
+                {
+                    header("Location: ../index.php?notexituser");
                 }
             }   
         }

@@ -63,9 +63,8 @@
             id_img int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
             id int NOT NULL,
             FOREIGN KEY (id) REFERENCES users(id),
-            imgName LONGTEXT NOT NULL,
-            orderImg LONGTEXT NOT NULL,
-            imgDateTime DATE
+            imgName LONGBLOB NOT NULL,
+            imgDateTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );";
         $pdo->exec($sql);
     }
