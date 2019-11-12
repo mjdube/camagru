@@ -23,7 +23,11 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         video.play();
     });
 }
-    document.getElementById('capture').addEventListener('click', function(){
+
+    document.getElementById('capture2').addEventListener('click', function(){
+        
+    })
+    document.getElementById('capture1').addEventListener('click', function(){
         context.drawImage(video, 0, 0, 400, 300);
         // photo.setAttribute('src', canvas.toDataURL('image/jpg'));
         photo.setAttribute('value', canvas.toDataURL('image/jpg'));

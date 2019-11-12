@@ -2,8 +2,8 @@
     require 'structure/header.struc.php';
 
     
-        if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
-        {
+        // if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
+        // {
             ?>
             <a href="editprofile.php"></a>
             <h3 class="profile-username"> Username <------ </h3>
@@ -40,11 +40,13 @@
             <input type="file" name="file" required>
             <input type="submit" value="UPLOAD" name="submit" >
             </form>';
-        }
-        else
-        {
-            header("Location: index.php");
+        // }
+        // else
+        // {
+        //     header("Location: index.php");
 
-        }
+        // }
     require 'structure/footer.struc.php';
 ?>
+
+

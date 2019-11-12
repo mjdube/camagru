@@ -8,8 +8,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-if ($_SESSION['userid'])
-{
+// if ($_SESSION['userid'])
+// {
     if (isset($_POST['submit']))
     {
         $newFileName = $_POST['imgName'];
@@ -94,8 +94,61 @@ if ($_SESSION['userid'])
             echo "You need to upload a proper file type";
         }
     }
-}
-else 
-{
-    echo 'Error';
-}
+// }
+// else 
+// {
+//     echo 'Error';
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                   storing actual images on the data tuturial
+
+// if (isset($_POST['submt']))
+// {
+//     $img = $_FILES['file']['name'];
+//     $imgdata = file_get_contents($_FILES['file']['tmp_name']);
+
+//     $imgType = $_FILES['file']['type'];
+
+//     if (substr($imgType, 0, 5) == "image")
+//     {
+//         $sql = "INSERT INTO images VALUES ($img, $imgdata)";
+//         echo "Image uploaded";
+//     }
+//     else 
+//     {
+//         echo "Only images are allowed";
+//     }
+// }
+
+
+// // disaplaying images
+// if(isset($_SESSION['id']))
+// {
+//     $id = $_SESSION['id'];
+//     $sql = "SELECT * FROM images WHERE id = $_SESSION['id'];";
+
+//     while ($row)
+//     {
+//         $imageData = $row['image'];
+//         $imageType = $_FILES['file']['type'];
+//     }
+//     // tells the web that this page is an image page
+//     header("content-type: image/$imgType");
+// }
