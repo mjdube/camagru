@@ -2,8 +2,47 @@
     border: #ccc solid 1px;
 }
 
+li ul {
+    display: inline;
+}
+
 body {
+    
     margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.title {
+    text-align: center;
+}
+
+.login-form {
+    display: block;
+    text-align: center;
+    background-image: url("photo-of-skate-park-during-daytime-3006223.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
+
+.login-msg {
+    text-align: center;
+}
+
+.form {
+    border: red solid 1px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    padding: 80px;
 }
 
 .container div{ 
@@ -50,7 +89,18 @@ body {
     width: 350px;
 }
 
+nav {
+    border: indianred solid 1px;
+    margin: auto;
+}
+
 /* .booth-capture-button */
+.login-nav {
+    border: blue solid 1px;
+    padding: 10px;
+    height: 50px;
+    float: right;
+}
 
 .camera {
     display: flex;
@@ -58,12 +108,19 @@ body {
     align-items: center;
 }
 
-
+#logo {
+    height: 70px;
+    width: 70px;
+    padding: 2px;
+    margin-left: 90px;
+}
 
 input[type=submit] {
     color: #fff;
     border: none;
     background-color: cornflowerblue;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 

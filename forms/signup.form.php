@@ -100,7 +100,7 @@
                 //     echo "messed up";
                 // }
 
-                var_dump($result);
+                // var_dump($result);
                 header("Location: ../thankyou.php?success");
                 exit();
             }

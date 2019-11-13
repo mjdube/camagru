@@ -2,8 +2,9 @@
     require 'structure/header.struc.php';
 ?>
     <section>
-    <h1>Camagru</h1>
-        <form action="forms/login.form.php" method="POST">
+    <h1 class="title">Camagru</h1>
+    <div class="login-form">
+        <form action="forms/login.form.php" method="POST" class="form">
             <label for="useremail">Username/E-mail:</label><br>
             <?php
                 // if (isset($_SESSION['id']))
@@ -19,47 +20,50 @@
             <input type="password" name="password" id="password"><br><br>
             <input type="submit" name="login" value="Login" >
         </form>
+    </div>
         <?php
-            if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
+            if (isset($_SESSION['userid']))
             {
-                 echo '<p class="">You are logged in!</p>';
+                // if ($_SESSION['is_verified'] == 1)
+                    echo '<p class="">You are logged in!</p>';
+                // else 
+                    // echo '<p class="">Please verify your email</p>';
             }
             else
             {
                 echo '<p class="">You are logged out!</p>';
             }
         ?>
-        <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
-        <p>Forgot your password? <a href="forgotpassword.php">Forgot Password</a></p>
+        <p class="login-msg">Don't have an account? <a href="signup.php">Sign Up</a></p>
+        <p class="login-msg">Forgot your password? <a href="forgotpassword.php">Forgot Password</a></p>
     </section>
     <?php
-        if (!isset($_GET['error']))
-            exit();
-        else if ($_GET['error'] == "useremailpassword")
-                echo '<p class="error" >Incorrect username/email or password!</p>';
-        if (isset($_GET['success']))
-            echo 'Check email to verify';
+        // if (!isset($_GET['error']))
+        //     exit();
+        // else if ($_GET['error'] == "useremailpassword")
+        //         echo '<p class="error" >Incorrect username/email or password!</p>';
+        // else if (isset($_GET['success']))
+        //     echo 'Check email to verify';
 
 
-        else if ([$_GET['verifyemail']] !== NULL)
-        {
-            if ($_GET['verifyemail'] == "success")
-                echo '<p>Email verified, you may now login.</p>';
-            if ($_GET['verifyemail'] == "somethingwrong")
-                echo '<p>Please try again.</p>';
-            if ($_GET['verifyemail'] == "already")
-                echo '<p>The account already verified.</p>';
-            if ($_GET['verifyemail'] == "notverified")
-                echo '<p>Something is wrong</p>';
-        }
+        // if (!isset([$_GET['verifyemail']]))
+        //     exit();
+        // else if ($_GET['verifyemail'] == "success")
+        //     echo '<p>Email verified, you may now login.</p>';
+        // else if ($_GET['verifyemail'] == "somethingwrong")
+        //     echo '<p>Please try again.</p>';
+        // else if ($_GET['verifyemail'] == "already")
+        //     echo '<p>The account already verified.</p>';
+        // else if ($_GET['verifyemail'] == "notverified")
+        //     echo '<p>Something is wrong</p>';
 
-        if (isset($_GET['passchange']))
-        {
-            if ($_GET['passchange'] == "y")
-                echo '<p>Password Changed</p>';
-            if ($_GET['passchange'] == "n")
-                echo '<p>Please try again!</p>';
-        }
+        
+        // if (!isset($_GET['passchange']))
+        //     exit();
+        // else if ($_GET['passchange'] == "y")
+        //     echo '<p>Password Changed</p>';
+        // else if ($_GET['passchange'] == "n")
+        //     echo '<p>Please try again!</p>';
     ?>
 <?php
     require 'structure/footer.struc.php';

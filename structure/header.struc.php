@@ -18,29 +18,36 @@
 <body>
     <header>
        <nav>
+           <img id="logo"src="includes/logo.png" alt="logo">
                <?php
-                    if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
+                    if (isset($_SESSION['userid']))
                     {
-                        echo'
-                        <ul>
-                            <li><a href="home.php">Home</a></li>
-                            <li><a href="profile.php">Profile</a></li>
+                        // if ($_SESSION['is_verified'] == 1)
+                        // {
+                            echo'
+                            <ul>
+                                <li><a href="home.php">Home</a></li>
+                                <li><a href="profile.php">Profile</a></li>
                             </ul>
-                        <div >
-                        <form action="includes/logout.inc.php" method="post">
-                        <input type="submit" name="logout" value="Logout" >
-                         </form>';
+                            <div class="login-nav">
+                                <form action="includes/logout.inc.php" method="post">
+                                <input type="submit" name="logout" value="Logout" >
+                            </form>
+                            </div>
+                            ';
+                        // }
                     }
                     else 
                     {
                         echo '
                         
-                        
-                        <form action="forms/login.form.php" method="post">
-                        <input type="text" name="useremail" placeholder="Email...">
-                        <input type="password" name="password" placeholder="Password...">
-                        <input type="submit" name="login" value="Login" >
-                        </form>';
+                        <div class="login-nav">
+                            <form class="login-form-nav" action="forms/login.form.php" method="post">
+                                <input type="text" name="useremail" placeholder="Email...">
+                                <input type="password" name="password" placeholder="Password...">
+                                <input type="submit" name="login" value="Login" >
+                            </form>
+                        </div>';
                     }
                ?>
            </div>
