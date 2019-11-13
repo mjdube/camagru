@@ -18,7 +18,7 @@
 <body>
     <header>
        <nav>
-           <img id="logo"src="includes/logo.png" alt="logo">
+           <img id="logo" src="includes/logo.png" alt="logo">
                <?php
                     if (isset($_SESSION['userid']))
                     {

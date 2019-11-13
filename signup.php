@@ -2,7 +2,9 @@
     require 'structure/header.struc.php';
 ?>
     <section>
+
         <h1>Sign Up</h1>
+        <div>
         <form action="forms/signup.form.php" method="POST">
             <?php
             if (isset($_GET['firstname'])) 
@@ -32,6 +34,7 @@
             <input type="password" name="repassword" id="" placeholder="retype password"><br><br>
             <input type="submit" value="Submit" name="submit">
         </form>
+        
         <p>Already have an account? <a href="index.php">Login</a></p>
         <p>Forgot your password? <a href="forgotpassword.php">Forgot Password</a></p>
         <?php

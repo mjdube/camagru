@@ -29,7 +29,6 @@ require 'structure/header.struc.php';
                 // $userID = intval($_SESSION['userid']);
                 $sql = "SELECT * FROM images ORDER BY imgDateTime DESC";
                 
-                
                 if (!($stmt = $pdo->prepare($sql)))
                     echo "SQL error 3";
                 else 

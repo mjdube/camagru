@@ -4,7 +4,7 @@
     <section>
     <h1 class="title">Camagru</h1>
     <div class="login-form">
-        <form action="forms/login.form.php" method="POST" class="form">
+        <form action="forms/login.form.php" method="POST" class="front-form">
             <label for="useremail">Username/E-mail:</label><br>
             <?php
                 // if (isset($_SESSION['id']))

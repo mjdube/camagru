@@ -25,24 +25,27 @@ ul {
 .login-form {
     display: block;
     text-align: center;
-    background-image: url("photo-of-skate-park-during-daytime-3006223.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center; 
+    margin-top: 230px;
 }
 
 .login-msg {
     text-align: center;
 }
 
-.form {
+#footer {
+    height: 200px;
+    border: chocolate solid 1px;
+}
+
+.front-form {
     border: red solid 1px;
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
     padding: 80px;
+    border-radius: 10px;
+    box-shadow: 5px 10px 18px #888888;
 }
 
 .container div{ 
@@ -92,14 +95,18 @@ ul {
 nav {
     border: indianred solid 1px;
     margin: auto;
+    border-radius: 20px;
 }
 
 /* .booth-capture-button */
 .login-nav {
     border: blue solid 1px;
-    padding: 10px;
+    padding: 15px;
     height: 50px;
     float: right;
+    width: 600px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .camera {
@@ -112,7 +119,7 @@ nav {
     height: 70px;
     width: 70px;
     padding: 2px;
-    margin-left: 90px;
+    margin-left: 50px;
 }
 
 input[type=submit] {
@@ -122,6 +129,8 @@ input[type=submit] {
     padding: 10px;
     border-radius: 5px;
 }
+
+input[type=]
 
 
 /* #canvas {
