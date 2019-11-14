@@ -30,9 +30,9 @@
                                 <li><a href="profile.php">Profile</a></li>
                             </ul>
                             <div class="login-nav">
-                                <form action="includes/logout.inc.php" method="post">
-                                <input type="submit" name="logout" value="Logout" >
-                            </form>
+                                <form class="login-form-nav" action="includes/logout.inc.php" method="post">
+                                    <input type="submit" name="logout" value="Logout" >
+                                </form>
                             </div>
                             ';
                         // }
@@ -40,7 +40,6 @@
                     else 
                     {
                         echo '
-                        
                         <div class="login-nav">
                             <form class="login-form-nav" action="forms/login.form.php" method="post">
                                 <input type="text" name="useremail" placeholder="Email...">

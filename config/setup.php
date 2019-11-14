@@ -1,5 +1,10 @@
 <?php
-
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    
     require 'database.php';
 
     
@@ -76,9 +81,12 @@
     try
     {
         $sql = "CREATE TABLE IF NOT EXISTS comments (
-            users_id int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+            id_comment int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+            id int NOT NULL,
+            FOREIGN KEY (id) REFERENCES users(id),
+            uid_username VARCHAR(100) NOT NULL, 
             comment LONGTEXT NOT NULL,
-            FOREIGN KEY (users_id) REFERENCES images(id_img)
+            commentDateTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );";
         $pdo->exec($sql);
     }
