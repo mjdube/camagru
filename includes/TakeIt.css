@@ -6,6 +6,9 @@ ul li {
     display: inline;
 }
 
+textarea {
+    display: block;
+}
 
 body {
     
@@ -64,6 +67,11 @@ ul {
     /* border: solid black 2px; */
     flex: 1;
     width: 30%;
+    border: coral solid 1px;
+}
+
+.everyone {
+    display: block;
 }
 
 .booth {

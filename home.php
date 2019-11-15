@@ -16,7 +16,7 @@
                     <a href="#" id="capture2" class="booth-capture-button">
                     <form action="forms/imgs.form.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="photo" name="photo">
-                    <input type="submit" value="UPLOAD" name="photo-submit" id="upload-btn">
+                    <button name="photo-submit" type="submit" id="upload-btn">Upload</button>
                     </form></a>
                 </div>
 
@@ -34,15 +34,25 @@
                     while ($images = $stmt->fetch(PDO::FETCH_ASSOC))
                     {
                         echo '
-                            <div class="box" height="500" width="900">
-                                <img src="data:image/png;base64,'.base64_encode($images['imgName']).'" alt="Your Picture">
-                                <form action="'.setCommet().'" method="post">
+                            <div class="box" height="500" width="900" >
+                                <img src="data:image/png;base64,'.base64_encode($images['imgName']).'" alt="Your Picture" class="everyone"><br><br>
+                                <form action="forms/comlike.form.php" method="post">
                                     <input type="submit" name="comment_submit" value="Comment">
-                                    <input type="submit" name="like_submit" value="Like">
+                                    <input type="submit" name="like_submit" value="Like"><br><br>
                                     <textarea name="comment" cols="30" rows="10">Write a comment...</textarea>
                                 </form>
                             </div>';
                     }
+                    $sql1 = "SELECT * FROM comments ORDER BY commentDateTime DESC";
+                        $stmt1 = $pdo->prepare($sql1);
+                            $stmt1->execute();
+                            while ($comment = $stmt1->fetch(PDO::FETCH_ASSOC))
+                            {
+                                echo '<div>
+                                    <h4>'.$comment['uid_username'].'</h4>
+                                    <p class="comment">'.$comment['comment'].'</p>
+                                </div>';
+                           } 
                     // echo '
                     //         <form action="forms/comlike.form.php" method="post">
                     //             <input type="submit" name="comment_submit" value="Comment">
