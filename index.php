@@ -18,7 +18,7 @@
             ?>
             <label for="password">Password:</label><br>
             <input type="password" name="password" id="password"><br><br>
-            <input type="submit" name="login" value="Login" >
+            <button type="submit" name="login">Login</button>
         </form>
     </div>
         <?php
