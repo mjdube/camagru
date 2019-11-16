@@ -95,12 +95,12 @@ if ($_SESSION['userid'])
     else if (isset($_POST['photo-submit']))
     {
         $img = explode(",", $_POST['photo']);
+        $id = intval($_SESSION['userid']);
         $imgData = $img[1];
         $imgData = base64_decode($imgData);
         include_once '../config/setup.php';
-        $sql = "INSERT INTO images (id, imgName) VALUES (?,?)";
+        $sql = "INSERT INTO images (userid, imgName) VALUES (?,?)";
         $stmt = $pdo->prepare($sql);
-        $id = intval($_SESSION['userid']);
         $stmt->execute([$id, $imgData]);
         header("Location: ../home.php");
         exit();

@@ -28,22 +28,14 @@ error_reporting(E_ALL);
     {
         if (isset($_POST['comment_submit']))
         {
-            
             $comment = $_POST['comment'];
-            if (preg_match("/^[a-zA-Z ]*$/", $comment))
-            {
-                include_once '../config/setup.php';
-                $id_img = intval($_GET['comment_id']);
-                $uid_user = $_SESSION['useruid'];
-                $sql = "INSERT INTO comments (id_img, uid_username, comment) VALUES (?,?,?)";
-                $stmt= $pdo->prepare($sql);
-                $stmt->execute([$id_img, $uid_user, $comment]);
-                header("Location: ../comment.php");
-            }
-            else 
-            {
-                echo 'did not comment';
-            }
+            include_once '../config/setup.php';
+            $id_img = intval($_GET['comment_id']);
+            $uid_user = $_SESSION['useruid'];
+            $sql = "INSERT INTO comments (id_img, uid_username, comment) VALUES (?,?,?)";
+            $stmt= $pdo->prepare($sql);
+            $stmt->execute([$id_img, $uid_user, $comment]);
+            header("Location: ../comment.php?pic=".$id_img);
         }
         else if (isset($_SESSION['like_submit']))
         {
