@@ -33,12 +33,28 @@
                     $stmt->execute();
                     while ($images = $stmt->fetch(PDO::FETCH_ASSOC))
                     {
-                        echo '
-                            <div class="box" height="500" width="900" >
-                                <a href="comment.php?pic='.$images['id_img'].'">
-                                <img src="data:image/png;base64,'.base64_encode($images['imgName']).'" alt="Your Picture" class="everyone"><br><br>
-                                </a>
-                            </div>';
+                        $image = explode(".", $images['imgName']);
+                        $fileActualExt = end($image);
+                        $allowed = array("jpg", "jpeg", "png","gif");
+                        if (in_array($fileActualExt, $allowed))
+                        {
+                            echo '
+                                <div class="box" height="500" width="900" >
+                                    <a href="comment.php?id_img='.$images['id_img'].'">
+                                    <img src="'.$images['imgName'].'" alt="Your Picture" class="everyone"><br><br>
+                                    </a>
+                                </div>';
+                        }
+                        else 
+                        {
+                            $imgData = base64_encode($images['imgName']);
+                            echo '
+                                <div class="box" height="500" width="900" >
+                                    <a href="comment.php?id_img='.$images['id_img'].'">
+                                    <img src="data:image/png;base64,'.$imgData.'" alt="Your Picture" class="everyone"><br><br>
+                                    </a>
+                                </div>';
+                        }
                     }
 
                     // $sql1 = "SELECT * FROM comments ORDER BY commentDateTime DESC";

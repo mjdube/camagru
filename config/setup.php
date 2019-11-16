@@ -80,6 +80,8 @@
     {
         $sql = "CREATE TABLE IF NOT EXISTS comments (
             id_comment int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+            id_img int(11) NOT NULL,
+            FOREIGN KEY (id_img) REFERENCES images(id_img),
             uid_username VARCHAR(100) NOT NULL, 
             comment LONGTEXT NOT NULL,
             commentDateTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -98,7 +100,7 @@
             id_like int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
             id_img int(11) NOT NULL,
             FOREIGN KEY (id_img) REFERENCES images(id_img),
-            imgName LONGTEXT NOT NULL
+            numberOfLike int(11) NOT NULL
         );";
         $pdo->exec($sql);
     }

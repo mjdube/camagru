@@ -14,10 +14,10 @@ if ($_SESSION['userid'])
     if (isset($_POST['submit']))
     {
         $newFileName = $_POST['imgName'];
-        if (empty($newFileName))
-            $newFileName = "gallery";
-        else 
-            $newFileName = strtolower(str_replace(" ", "-", $newFileName));
+        // if (empty($newFileName))
+        //     $newFileName = "gallery";
+        // else 
+        //     $newFileName = strtolower(str_replace(" ", "-", $newFileName));
 
         //The actual image
         $file = $_FILES['file'];
@@ -36,7 +36,7 @@ if ($_SESSION['userid'])
         
         // Get The extension name
         $fileActualExt = strtolower(end($fileExt));
-        $allowed = array("jpg", "jpeg", "png");
+        $allowed = array("jpg", "jpeg", "png","gif");
         
         // Check if extension exist 
         if (in_array($fileActualExt, $allowed))
@@ -45,35 +45,48 @@ if ($_SESSION['userid'])
             {
                 if ($fileSize < 2000000)
                 {
-                    // The unique file name
-                    $imageFullName = $newFileName.".".uniqid("", true).".".$fileActualExt;
-                    $fileDestination = "../uploads/".$imageFullName;
+                    // Saving to the actual database <------------------
                     
-                    // Conecting to my database
-                    include_once "../config/database.php";
-                    $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $sql = "SELECT * FROM images";
-                    if (!($stmt = $pdo->prepare($sql)))
-                    {
-                        echo "Sql error1";
-                    }
-                    else
-                    {
-                        $stmt->execute();
-                        // $result = $stmt->fetch();
-                        $sql = "INSERT INTO images (id, imgName) VALUES (?,?)";
-                        if (!($stmt = $pdo->prepare($sql)))
-                        {
-                            echo "Sql error2";
-                        }
-                        else  
-                        {
-                            $stmt->execute([$_SESSION['userid'], $imageFullName, $setImgOrder]);
-                            move_uploaded_file($fileTempName, $fileDestination);
-                            header("Location: ../profile.php?success");
-                        }
-                    }
+                    include_once '../config/setup.php';
+                    $imgData = file_get_contents($fileTempName);    
+                    $uid_username = $_SESSION['useruid'];
+                    $sql = "INSERT INTO images (uid_username, imgName) VALUES (?, ?)";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute([$uid_username, $imgData]);
+
+                    // Saving to a folder  <------------------
+
+                    // The unique file name
+                    // $imageFullName = $newFileName.".".uniqid("", true).".".$fileActualExt;
+                    // $fileDestination = "../uploads/".$imageFullName;
+                    
+                    // // Conecting to my database
+                    // include_once "../config/database.php";
+                    // $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
+                    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    // $sql = "SELECT * FROM images";
+                    // if (!($stmt = $pdo->prepare($sql)))
+                    // {
+                    //     echo "Sql error1";
+                    // }
+                    // else
+                    // {
+                    //     $stmt->execute();
+                    //     // $result = $stmt->fetch();
+                    //     $sql = "INSERT INTO images (id, imgName) VALUES (?,?)";
+                    //     if (!($stmt = $pdo->prepare($sql)))
+                    //     {
+                    //         echo "Sql error2";
+                    //     }
+                    //     else  
+                    //     {
+                    //         $stmt->execute([$_SESSION['userid'], $imageFullName, $setImgOrder]);
+                    //         move_uploaded_file($fileTempName, $fileDestination);
+                    //         header("Location: ../profile.php?success");
+                    //     }
+                    // }
+
+                    header("Location: ../profile.php?success");
                 }
                 else
                 {
@@ -99,7 +112,7 @@ if ($_SESSION['userid'])
         $imgData = $img[1];
         $imgData = base64_decode($imgData);
         include_once '../config/setup.php';
-        $sql = "INSERT INTO images (userid, imgName) VALUES (?,?)";
+        $sql = "INSERT INTO images (uid_username, imgName) VALUES (?,?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id, $imgData]);
         header("Location: ../home.php");
