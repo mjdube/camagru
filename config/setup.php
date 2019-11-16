@@ -7,7 +7,6 @@
     
     require 'database.php';
 
-    
     try
     {
         $sql = "CREATE DATABASE IF NOT EXISTS db_mdube";
@@ -66,8 +65,8 @@
     {
         $sql = "CREATE TABLE IF NOT EXISTS images (
             id_img int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-            id int NOT NULL,
-            FOREIGN KEY (id) REFERENCES users(id),
+            userid int NOT NULL,
+            FOREIGN KEY (userid) REFERENCES users(id),
             imgName LONGBLOB NOT NULL,
             imgDateTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );";
@@ -82,8 +81,8 @@
     {
         $sql = "CREATE TABLE IF NOT EXISTS comments (
             id_comment int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-            id int NOT NULL,
-            FOREIGN KEY (id) REFERENCES users(id),
+            id_img int NOT NULL,
+            FOREIGN KEY (id_img) REFERENCES images(id_img),
             uid_username VARCHAR(100) NOT NULL, 
             comment LONGTEXT NOT NULL,
             commentDateTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -100,8 +99,8 @@
     {
         $sql = "CREATE TABLE IF NOT EXISTS likes (
             id_like int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-            users_id int(11) NOT NULL,
-            FOREIGN KEY (users_id) REFERENCES images(id_img),
+            id_img int(11) NOT NULL,
+            FOREIGN KEY (id_img) REFERENCES images(id_img),
             imgName LONGTEXT NOT NULL
         );";
         $pdo->exec($sql);

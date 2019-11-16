@@ -32,14 +32,13 @@ error_reporting(E_ALL);
             $comment = $_POST['comment'];
             if (preg_match("/^[a-zA-Z ]*$/", $comment))
             {
-                
                 include_once '../config/setup.php';
-                $user = intval($_SESSION['userid']);
-                $userid = $_SESSION['useruid'];
-                $sql = "INSERT INTO comments (id, uid_username, comment) VALUES (?,?,?)";
+                $id_img = intval($_GET['comment_id']);
+                $uid_user = $_SESSION['useruid'];
+                $sql = "INSERT INTO comments (id_img, uid_username, comment) VALUES (?,?,?)";
                 $stmt= $pdo->prepare($sql);
-                $stmt->execute([$user, $userid, $comment]);
-                header("Location: ../home.php");
+                $stmt->execute([$id_img, $uid_user, $comment]);
+                header("Location: ../comment.php");
             }
             else 
             {

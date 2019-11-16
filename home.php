@@ -35,24 +35,24 @@
                     {
                         echo '
                             <div class="box" height="500" width="900" >
+                                <a href="comment.php?pic='.$images['id_img'].'">
                                 <img src="data:image/png;base64,'.base64_encode($images['imgName']).'" alt="Your Picture" class="everyone"><br><br>
-                                <form action="forms/comlike.form.php" method="post">
-                                    <input type="submit" name="comment_submit" value="Comment">
-                                    <input type="submit" name="like_submit" value="Like"><br><br>
-                                    <textarea name="comment" cols="30" rows="10">Write a comment...</textarea>
-                                </form>
+                                </a>
                             </div>';
                     }
-                    $sql1 = "SELECT * FROM comments ORDER BY commentDateTime DESC";
-                        $stmt1 = $pdo->prepare($sql1);
-                            $stmt1->execute();
-                            while ($comment = $stmt1->fetch(PDO::FETCH_ASSOC))
-                            {
-                                echo '<div>
-                                    <h4>'.$comment['uid_username'].'</h4>
-                                    <p class="comment">'.$comment['comment'].'</p>
-                                </div>';
-                           } 
+
+                    // $sql1 = "SELECT * FROM comments ORDER BY commentDateTime DESC";
+                    // $stmt1 = $pdo->prepare($sql1);
+                    // $stmt1->execute();
+                    // while ($comment = $stmt1->fetch(PDO::FETCH_ASSOC))
+                    // {
+                    //     echo '<div>
+                    //     <h4>'.$comment['uid_username'].'</h4>
+                    //     <p class="comment">'.$comment['comment'].'</p>
+                    //     </div>';
+                    // }
+                    
+                    
                     // echo '
                     //         <form action="forms/comlike.form.php" method="post">
                     //             <input type="submit" name="comment_submit" value="Comment">
@@ -84,5 +84,9 @@
                                 </div>';
                            }     -->    
 
-
+                           <!-- <form action="forms/comlike.form.php" method="post">
+                                    <input type="submit" name="comment_submit" value="Comment">
+                                    <input type="submit" name="like_submit" value="Like"><br><br>
+                                    <textarea name="comment" cols="30" rows="10">Write a comment...</textarea>
+                                </form> -->
                            
