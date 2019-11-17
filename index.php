@@ -21,19 +21,6 @@
             <button type="submit" name="login">Login</button>
         </form>
     </div>
-        <?php
-            if (isset($_SESSION['userid']))
-            {
-                // if ($_SESSION['is_verified'] == 1)
-                    echo '<p class="">You are logged in!</p>';
-                // else 
-                    // echo '<p class="">Please verify your email</p>';
-            }
-            else
-            {
-                echo '<p class="">You are logged out!</p>';
-            }
-        ?>
         <p class="login-msg">Don't have an account? <a href="signup.php">Sign Up</a></p>
         <p class="login-msg">Forgot your password? <a href="forgotpassword.php">Forgot Password</a></p>
     </section>

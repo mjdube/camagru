@@ -26,29 +26,54 @@ error_reporting(E_ALL);
     // }
     if (isset($_SESSION['userid']))
     {
+        $id_img = intval($_GET['id_img']);
         if (isset($_POST['comment_submit']))
         {
             include_once '../config/setup.php';
             $comment = $_POST['comment'];
-
-            $id_img = intval($_GET['id_img']);
-            
-            $uid_username = $_SESSION['useruid'];
-            $sql = "INSERT INTO comments (id_img, uid_username, comment) VALUES (?,?,?)";
-            $stmt= $pdo->prepare($sql);
-            $stmt->execute([$id_img, $uid_username, $comment]);
+            if (!empty($comment))
+            {
+                $uid_username = $_SESSION['useruid'];
+                $sql = "INSERT INTO comments (id_img, uid_username, comment) VALUES (?,?,?)";
+                $stmt= $pdo->prepare($sql);
+                $stmt->execute([$id_img, $uid_username, $comment]);
+                header("Location: ../comment.php?id_img=".$id_img);
+                exit();
+            }
+            else 
+            {
+                header("Location: ../comment.php?id_img=".$id_img);
+                exit();
+            }
+        }
+        if (isset($_POST['like_submit']))
+        {
+            include_once '../config/setup.php';
+            $sql = "INSERT INTO likes (id_img) VALUES (?) ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$id_img]);
             header("Location: ../comment.php?id_img=".$id_img);
+            exit();
         }
-        else if (isset($_SESSION['like_submit']))
+        
+        if (isset($_POST['delete_submit']))
         {
-
-        }
-        else 
-        {
-            echo 'didnt comment or didnt like';
+            include_once '../config/setup.php';
+            $sql = "DELETE FROM likes WHERE id_img = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$id_img]);
+            $sql = "DELETE FROM comments WHERE id_img = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$id_img]);
+            $sql = "DELETE FROM images WHERE id_img = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$id_img]);
+            header("Location: ../home.php");
+            exit();
         }
     }
     else 
     {
-        echo 'Not allowd';
+        header("Location: ../index.php");
+        exit();
     }

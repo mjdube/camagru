@@ -108,13 +108,13 @@ if ($_SESSION['userid'])
     else if (isset($_POST['photo-submit']))
     {
         $img = explode(",", $_POST['photo']);
-        $id = intval($_SESSION['userid']);
+        $uid_username = $_SESSION['useruid'];
         $imgData = $img[1];
         $imgData = base64_decode($imgData);
         include_once '../config/setup.php';
         $sql = "INSERT INTO images (uid_username, imgName) VALUES (?,?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$id, $imgData]);
+        $stmt->execute([$uid_username, $imgData]);
         header("Location: ../home.php");
         exit();
     }
@@ -126,7 +126,8 @@ if ($_SESSION['userid'])
 }
 else 
 {
-    echo 'Error';
+    header("Location: ../index.php");
+    exit();
 }
 
 //         isset($_POST['snap'])){

@@ -94,13 +94,7 @@
                 
                 // Send to a email...
                 $mail = mail($to, $subject, $message, $headers);
-                // if($mail){
-                //     echo "Wassip";
-                // }else{
-                //     echo "messed up";
-                // }
 
-                // var_dump($result);
                 header("Location: ../thankyou.php?success");
                 exit();
             }

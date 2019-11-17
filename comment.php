@@ -2,7 +2,6 @@
     require 'structure/header.struc.php';
 ?>
 
-
 <?php
 
     if ($_SESSION['userid'] && $_SESSION['is_verified'] == 1)
@@ -18,12 +17,24 @@
         $images = $stmt->fetch(PDO::FETCH_ASSOC);
 
         echo '<img src="data:image/png;base64,'.base64_encode($images['imgName']).'" alt="Your Picture" class="everyone">';
-
+        $sql = "SELECT * FROM likes WHERE id_img = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id_img]);
+        $likes = $stmt->rowCount();
         echo
-            '<form action="forms/comlike.form.php?id_img='.$images['id_img'].'&like_id=" method="post">
-                <input type="submit" name="comment_submit" value="Comment">
-                <input type="submit" name="like_submit" value="Like"><br><br>
-                <textarea name="comment" cols="30" rows="10">Write a comment...</textarea>
+            '<form action="forms/comlike.form.php?id_img='.$images['id_img'].'" method="post">
+                <button type="submit" name="comment_submit">Comment</button>
+                <button type="submit" name="like_submit">Like('.$likes.')</button>';
+                $uid_username = $_SESSION['useruid'];
+                $sql = "SELECT uid_username FROM images WHERE id_img = ?";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$id_img]);
+                $btn = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($btn['uid_username'] == $uid_username)
+                {
+                    echo '<button type="submit" name="delete_submit">Delete</button>';
+                }
+                echo '<textarea name="comment" cols="30" rows="10">Write a comment...</textarea>
             </form>';
         
 

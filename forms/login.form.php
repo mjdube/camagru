@@ -9,10 +9,7 @@ error_reporting(E_ALL);
     if (isset($_POST['login']))
     {
         
-        require '../config/database.php';
-
-        $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        require '../config/setup.php';
         
         $useremail = htmlspecialchars($_POST['useremail']); 
         $password = htmlspecialchars($_POST['password']);

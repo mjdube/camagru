@@ -40,27 +40,9 @@
     {
         echo " Can not create a users table.".$e->getMessage();
     }
-
-    // try 
-    // {
-    //     // $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
-    //     // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //     $sql = "CREATE TABLE pwdRest (
-    //         pwdRestId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    //         pwdRestEmail TEXT NOT NULL,
-    //         pwdRestSelector TEXT NOT NULL,
-    //         pwdRestToken LONGTEXT NOT NULL,
-    //         pwdResetExpires TEXT NOT NULL
-    //     );";
-    //     $pdo->exec($sql);
-    // }
-    // catch (PDOException $e)
-    // {
-    //     echo " Can not create a pwdRset table.".$e->getMessage();
-    // }
     
 
-    // CHILD <----------------------- PARENT to comments and likes
+    // PARENT <----------------------- PARENT to comments and likes
     try
     {
         $sql = "CREATE TABLE IF NOT EXISTS images (
@@ -99,8 +81,7 @@
         $sql = "CREATE TABLE IF NOT EXISTS likes (
             id_like int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
             id_img int(11) NOT NULL,
-            FOREIGN KEY (id_img) REFERENCES images(id_img),
-            numberOfLike int(11) NOT NULL
+            FOREIGN KEY (id_img) REFERENCES images(id_img)
         );";
         $pdo->exec($sql);
     }
