@@ -1,11 +1,12 @@
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var photo = document.getElementById('photo');
+var sticker = new Image();
+var btn = document.getElementsByClassName('btn');
+
 (function() {
-
-const video = document.getElementById('video');
-const canvas = document.getElementById('canvas');
-const context = canvas.getContext('2d');
-const photo = document.getElementById('photo');
 const vendorUrl = window.URL || window.webkitURL;
-
 // navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 // navigator.getUserMedia({video:true, audio:false}, 
 //     function(stream){
@@ -22,13 +23,39 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         video.play();
     });
 }
-
-    document.getElementById('capture2').addEventListener('click', function(){
-        
-    })
+    
     document.getElementById('capture1').addEventListener('click', function(){
         context.drawImage(video, 0, 0, 400, 300);
         // photo.setAttribute('src', canvas.toDataURL('image/jpg'));
         photo.setAttribute('value', canvas.toDataURL('image/jpg'));
     })
 })();
+
+function addSticker(path){
+    var sticker = new Image();
+    // var width = video.offsetWidth, height = video.offsetHeight;
+    // sticker.src = path;
+    if (path == 1) 
+        var name = "includes/stickers/thinking.png";
+    else if (path == 2)
+        var name = "includes/stickers/poo.png";
+    else if (path == 2)
+        var name = "includes/stickers/andriod.png";
+    else if (path == 4)
+        var name = "includes/stickers/peacock.png";
+    
+    sticker.src = name;
+
+    if (canvas){
+        context = canvas.getContext('2d');
+        context.drawImage(sticker, 0, 0, 400, 300);
+        photo.src = canvas.toDataURL('image/png');
+        document.getElementById("canvas").innerHTML = "<img src="+photo.src+">";
+    }
+    else{
+        document.getElementById("canvas").innerHTML = "Take a picture first."; 
+    }
+  }
+
+// btn.addEventListener("click", addSticker);
+

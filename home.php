@@ -13,11 +13,20 @@
                 </div>
                 <div class="btns">
                     <a href="#" id="capture1" class="booth-capture-button">Take</a>
-                    <a href="#" id="capture2" class="booth-capture-button">
                     <form action="forms/imgs.form.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="photo" name="photo">
-                    <button name="photo-submit" type="submit" id="upload-btn">Upload</button>
-                    </form></a>
+                    <button name="photo_submit" type="submit" id="upload-btn">Upload</button> 
+                    </form>
+                    <br><br>
+                    <form action="forms/imgs.form.php" method="post">
+                    </form>
+                </div>
+
+                <div>
+                    <button class="btn" onclick="addSticker(1)"> thinking </button>
+                    <button class="btn" onclick="addSticker(2)"> poo </button>
+                    <button class="btn" onclick="addSticker(3)"> android </button>
+                    <button class="btn" onclick="addSticker(4)"> peacock </button>
                 </div>
 
                 <script type="text/javascript" src="includes/main.js"></script>

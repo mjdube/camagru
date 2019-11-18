@@ -105,11 +105,12 @@ if ($_SESSION['userid'])
             echo "You need to upload a proper file type";
         }
     }
-    else if (isset($_POST['photo-submit']))
+    else if (isset($_POST['photo_submit']))
     {
         $img = explode(",", $_POST['photo']);
         $uid_username = $_SESSION['useruid'];
         $imgData = $img[1];
+        
         $imgData = base64_decode($imgData);
         include_once '../config/setup.php';
         $sql = "INSERT INTO images (uid_username, imgName) VALUES (?,?)";
