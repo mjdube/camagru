@@ -110,7 +110,6 @@ if ($_SESSION['userid'])
         $img = explode(",", $_POST['photo']);
         $uid_username = $_SESSION['useruid'];
         $imgData = $img[1];
-        
         $imgData = base64_decode($imgData);
         include_once '../config/setup.php';
         $sql = "INSERT INTO images (uid_username, imgName) VALUES (?,?)";

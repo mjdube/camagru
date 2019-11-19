@@ -54,7 +54,7 @@
             <form action="forms/imgs.form.php" method="post" enctype="multipart/form-data">
             <input type="text" name="imgName">
             <input type="file" name="file" required>
-            <input type="submit" value="UPLOAD" name="submit" >
+            <button type="submit" name="submit">Upload</button>
             </form>';
         }
         else

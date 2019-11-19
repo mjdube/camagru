@@ -11,25 +11,25 @@
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
         $info = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo '<form action="forms/edit.form.php" method="post">
+        echo 
+        '<form action="forms/edit.form.php" method="post">
 
             <h4>Current Username: '.$info['uid_username'].'</h4>
             <input type="text" name="username" placeholder="Change Username..."><br><br>
             <input type="password" name="current-pwd-username" placeholder="Password..."><br><br>
             <button type="submit" name="change_username">Change Username</button>
             
-
             <h4>Current Email: '.$info['email'].'</h4>
             <input type="email" name="email" placeholder="Change Email..."><br><br>
             <input type="password" name="current-pwd-email" placeholder="Password..."><br><br>
             <button type="submit" name="change_email">Change Email</button>
 
-
-        <br><br><br><br>
+        <br><br>
+            <h4>Change your password</h4>
             <input type="password" name="pwd1" placeholder="Change Password..."><br><br>
             <input type="password" name="pwd2" placeholder="Retype Password..."><br><br>
             <input type="password" name="current-pwd" placeholder="Current Password..."><br><br>
-            <input type="submit" name="edit-password" value="Change Password"><br><br>
+            <button type="submit" name="edit-password">Change Password</button><br><br>
         </form>';
 
     

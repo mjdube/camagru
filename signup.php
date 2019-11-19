@@ -30,7 +30,7 @@
                 echo '<input type="text" name="email" placeholder="E-mail"><br><br>';
             ?>
             <input type="text" name="username" id="" placeholder="Username"><br><br>
-            <input type="password" name="password" id="" placeholder="password"><br><br>
+            <input type="password" name="password" id="" placeholder="password" required pattern="^(?=.*[A-Z])(?=.*[0-9]).{6,32}$" oninput="setCustomValidity(''); checkValidity(); setCustomValidity(validity.valid ? '' : 'invalid password.');"><br><br>
             <input type="password" name="repassword" id="" placeholder="retype password"><br><br>
             <input type="submit" value="Submit" name="submit">
         </form>

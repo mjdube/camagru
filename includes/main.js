@@ -49,7 +49,7 @@ function addSticker(path){
     if (canvas){
         context = canvas.getContext('2d');
         context.drawImage(sticker, 0, 0, 50, 50);
-        photo.src = canvas.toDataURL('image/png');
+        photo.setAttribute('value', canvas.toDataURL('image/jpg'));
         document.getElementById("canvas").innerHTML = "<img src="+photo.src+">";
     }
     else{
