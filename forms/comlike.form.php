@@ -29,16 +29,25 @@ error_reporting(E_ALL);
         $id_img = intval($_GET['id_img']);
         if (isset($_POST['comment_submit']))
         {
-            include_once '../config/setup.php';
+            
             $comment = $_POST['comment'];
             if (!empty($comment))
             {
+                include_once '../config/setup.php';
                 $uid_username = $_SESSION['useruid'];
                 $sql = "INSERT INTO comments (id_img, uid_username, comment) VALUES (?,?,?)";
                 $stmt= $pdo->prepare($sql);
                 $stmt->execute([$id_img, $uid_username, $comment]);
-                header("Location: ../comment.php?id_img=".$id_img);
-                exit();
+
+                $sql = "SELECT * FROM users WHERE email = ? AND notify = 1";
+                $stmt = $pdo->prepare($sql);
+                $stmt->exexcute([$uid_username]);
+
+                if ()
+                {
+                    header("Location: ../comment.php?id_img=".$id_img);
+                    exit();
+                }
             }
             else 
             {

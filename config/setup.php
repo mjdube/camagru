@@ -32,6 +32,7 @@
             email VARCHAR(100) NOT NULL,
             pword VARCHAR(200) NOT NULL,
             vkey VARCHAR(100) NOT NULL,
+            notify BIT DEFAULT 1,
             verify BIT DEFAULT 0
         );";
         $pdo->exec($sql);
@@ -47,6 +48,8 @@
     {
         $sql = "CREATE TABLE IF NOT EXISTS images (
             id_img int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+            id int(11) NOT NULL,
+            FOREIGN KEY (id) REFERENCES users (id),
             uid_username VARCHAR(100) NOT NULL,
             imgName LONGBLOB NOT NULL,
             imgDateTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

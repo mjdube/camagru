@@ -48,11 +48,12 @@ if ($_SESSION['userid'])
                     // Saving to the actual database <------------------
                     
                     include_once '../config/setup.php';
+                    $id = intval($_SESSION['userid']);
                     $imgData = file_get_contents($fileTempName);    
                     $uid_username = $_SESSION['useruid'];
-                    $sql = "INSERT INTO images (uid_username, imgName) VALUES (?, ?)";
+                    $sql = "INSERT INTO images (id, uid_username, imgName) VALUES (?, ?, ?)";
                     $stmt = $pdo->prepare($sql);
-                    $stmt->execute([$uid_username, $imgData]);
+                    $stmt->execute([$id, $uid_username, $imgData]);
 
                     // Saving to a folder  <------------------
 
@@ -111,11 +112,12 @@ if ($_SESSION['userid'])
         $uid_username = $_SESSION['useruid'];
         $imgData = $img[1];
         $imgData = base64_decode($imgData);
+        $id = $_SESSION['userid'];
         include_once '../config/setup.php';
-        $sql = "INSERT INTO images (uid_username, imgName) VALUES (?,?)";
+        $sql = "INSERT INTO images (id, uid_username, imgName) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$uid_username, $imgData]);
-        header("Location: ../home.php");
+        $stmt->execute([$id, $uid_username, $imgData]);
+        header("Location: ../home.php?success");
         exit();
     }
     else 

@@ -7,8 +7,12 @@
     <title>Camagru</title>
 </head>
 <body>
-    <h1>THANK YOU</h1>
-    <h3>Thank you for registering. We have sent a verification email to the address provided</h3>
-    
+    <h1>Changing E-mail</h1>
+    <h3>Please login into your new email provided for verification</h3>
+    <?php
+    session_start();
+    session_unset();
+    session_destroy();
+    ?>
 </body>
 </html>

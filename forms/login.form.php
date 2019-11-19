@@ -47,8 +47,9 @@ error_reporting(E_ALL);
                         $_SESSION['userid'] = $result['id'];
                         $_SESSION['useruid'] = $result['uid_username'];
                         $_SESSION['is_verified'] = $result['verify'];
+                        $_SESSION['notify'] = $result['notify'];
                         // head in 
-                        header("Location: ../home.php?login=success&log=in");
+                        header("Location: ../home.php?login=success");
                         exit();
                     }
                 }
