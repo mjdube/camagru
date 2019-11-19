@@ -13,7 +13,6 @@ const vendorUrl = window.URL || window.webkitURL;
 //         video.src = stream;
 //         video.play();
 //     }, function (error){
-
 //     });
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
@@ -33,22 +32,23 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
 function addSticker(path){
     var sticker = new Image();
+    var name = null;
     // var width = video.offsetWidth, height = video.offsetHeight;
     // sticker.src = path;
-    if (path == 1) 
-        var name = "includes/stickers/thinking.png";
-    else if (path == 2)
-        var name = "includes/stickers/poo.png";
-    else if (path == 2)
-        var name = "includes/stickers/andriod.png";
-    else if (path == 4)
-        var name = "includes/stickers/peacock.png";
+    if (path === 1) 
+        name = "includes/stickers/thinking.png";
+    else if (path === 2)
+        name = "includes/stickers/poo.png";
+    else if (path === 3)
+        name = "includes/stickers/android.png";
+    else if (path === 4)
+        name = "includes/stickers/peacock.png";
     
     sticker.src = name;
 
     if (canvas){
         context = canvas.getContext('2d');
-        context.drawImage(sticker, 0, 0, 400, 300);
+        context.drawImage(sticker, 0, 0, 50, 50);
         photo.src = canvas.toDataURL('image/png');
         document.getElementById("canvas").innerHTML = "<img src="+photo.src+">";
     }
