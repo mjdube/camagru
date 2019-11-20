@@ -27,6 +27,8 @@ error_reporting(E_ALL);
     if (isset($_SESSION['userid']))
     {
         $id_img = intval($_GET['id_img']);
+        $id = intval($_SESSION['userid']);
+        $uid_username = $_SESSION['useruid'];
         if (isset($_POST['comment_submit']))
         {
             
@@ -34,16 +36,41 @@ error_reporting(E_ALL);
             if (!empty($comment))
             {
                 include_once '../config/setup.php';
-                $uid_username = $_SESSION['useruid'];
-                $sql = "INSERT INTO comments (id_img, uid_username, comment) VALUES (?,?,?)";
+                
+                $sql = "INSERT INTO comments (id_img, id, uid_username, comment) VALUES (?,?,?)";
                 $stmt= $pdo->prepare($sql);
-                $stmt->execute([$id_img, $uid_username, $comment]);
+                $stmt->execute([$id_img, $id, $uid_username, $comment]);
 
-                $sql = "SELECT * FROM users WHERE email = ? AND notify = 1";
+                $sql = "SELECT id FROM images WHERE id_img = ?";
                 $stmt = $pdo->prepare($sql);
-                $stmt->exexcute([$uid_username]);
+                $stmt->execute([$id_img]);
+                $images = $stmt->fetch(PDO::FETCH_ASSOC);
+                $id_img = intval($images['id']);
 
-                if ()
+                $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+                $stmt->execute([$id_img]);
+                $users = $stmt->fetch(PDO::FETCH_ASSOC);
+                $user_notify = intval($users['notify']);
+                $user_id = intval($users['id']);
+                $user_email = $users['email'];
+                if ($user_notify == 1 && $id != $user_id)
+                {
+                    $to = $user_email;
+
+                    // For email Notification
+                    $subject = "Notification";
+                    $message = "<a href='http://localhost:8080/camagru/comment.php?id_img=$id_img'>Register Account</a>";
+                    $headers = "From: sirmj.dube@gmail.com";
+                    $headers .= "MIME-Version: 1.0"."\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
+                    
+                    // Send to a email...
+                    $mail = mail($to, $subject, $message, $headers);
+
+                    header("Location: ../comment.php?id_img=".$id_img);
+                    exit();
+                }
+                else 
                 {
                     header("Location: ../comment.php?id_img=".$id_img);
                     exit();
