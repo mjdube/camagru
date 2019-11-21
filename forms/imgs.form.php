@@ -110,6 +110,7 @@ if ($_SESSION['userid'])
     {
         $img = explode(",", $_POST['photo']);
         $uid_username = $_SESSION['useruid'];
+        var_dump( $img);
         $imgData = $img[1];
         $imgData = base64_decode($imgData);
         $id = $_SESSION['userid'];

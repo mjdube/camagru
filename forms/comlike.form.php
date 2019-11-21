@@ -31,7 +31,7 @@ error_reporting(E_ALL);
         $uid_username = $_SESSION['useruid'];
         if (isset($_POST['comment_submit']))
         {
-            $comment = $_POST['comment'];
+            $comment = htmlspecialchars($_POST['comment']);
             if (!empty($comment))
             {
                 include_once '../config/setup.php';

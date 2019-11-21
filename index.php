@@ -24,7 +24,7 @@
         <p class="login-msg">Don't have an account? <a href="signup.php">Sign Up</a></p>
         <p class="login-msg">Forgot your password? <a href="forgotpassword.php">Forgot Password</a></p>
     </section>
-    <?php
+    <!-- <?php
         // if (!isset($_GET['error']))
         //     exit();
         // else if ($_GET['error'] == "useremailpassword")
@@ -54,4 +54,4 @@
     ?>
 <?php
     require 'structure/footer.struc.php';
-?>
+?> -->

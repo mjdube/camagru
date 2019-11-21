@@ -33,7 +33,7 @@
                             </ul>
                             <div class="login-nav">
                                 <form class="login-form-nav" action="includes/logout.inc.php" method="post">
-                                    <input type="submit" name="logout" value="Logout" >
+                                <button type="submit" name="logout">Logout</button>
                                 </form>
                             </div>
                             ';
@@ -44,14 +44,12 @@
                         echo '
                         
                             <li><a href="home.php">Home</a></li>
-                            <li><a href="home.php">Home</a></li>
-                            <li><a href="home.php">Home</a></li>
                         </ul>
                         <div class="login-nav">
                             <form class="login-form-nav" action="forms/login.form.php" method="post">
                                 <input type="text" name="useremail" placeholder="Email...">
                                 <input type="password" name="password" placeholder="Password...">
-                                <input type="submit" name="login" value="Login" >
+                                <button type="submit" name="login">Login</button>
                             </form>
                         </div>';
                     }
@@ -59,3 +57,4 @@
            </div>
        </nav>
     </header>
+    
