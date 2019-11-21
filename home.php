@@ -2,7 +2,7 @@
 
     require 'structure/header.struc.php';
     
-    if ($_SESSION['userid'] && $_SESSION['is_verified'] == 1)
+    if (isset($_SESSION['userid']) && $_SESSION['is_verified'] == 1)
     {        
 
                 echo '<div class="camera">
@@ -15,7 +15,7 @@
                     <a href="#" id="capture1" class="booth-capture-button">Take</a>
                     <form action="forms/imgs.form.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="photo" name="photo">
-                    <button name="photo_submit" type="submit" id="upload-btn">Upload</button> 
+                    <button name="photo_submit" type="submit" id="upload-btn" class="booth-capture-button">Upload</button> 
                     </form>
                     <br><br>
                     <form action="forms/imgs.form.php" method="post">
@@ -36,7 +36,9 @@
                 // $userID = intval($_SESSION['userid']);
                 $sql = "SELECT * FROM images ORDER BY imgDateTime DESC";
                 if (!($stmt = $pdo->prepare($sql)))
-                    echo "SQL error 3";
+                {
+                    header("Location: home.php");
+                }
                 else 
                 {
                     $stmt->execute();
@@ -88,6 +90,46 @@
                 }
                 
                 // <video src="" id="video" width="400" height="300"></video>
+    }
+    else if (!isset($_SESSION['userid']))
+    {
+                include_once 'config/setup.php';
+                // $userID = intval($_SESSION['userid']);
+                $sql = "SELECT * FROM images ORDER BY imgDateTime DESC";
+                if (!($stmt = $pdo->prepare($sql)))
+                {
+                    header("Location: index.php");
+                    exit();
+                }
+                else 
+                {
+                    $stmt->execute();
+                    while ($images = $stmt->fetch(PDO::FETCH_ASSOC))
+                    {
+                        $image = explode(".", $images['imgName']);
+                        $fileActualExt = end($image);
+                        $allowed = array("jpg", "jpeg", "png","gif");
+                        if (in_array($fileActualExt, $allowed))
+                        {
+                            echo '
+                                <div class="box" height="500" width="900" >
+                                    <a href="comment.php?id_img='.$images['id_img'].'">
+                                    <img src="'.$images['imgName'].'" alt="Your Picture" class="everyone"><br><br>
+                                    </a>
+                                </div>';
+                        }
+                        else 
+                        {
+                            $imgData = base64_encode($images['imgName']);
+                            echo '
+                                <div class="box" height="500" width="900" >
+                                    <a href="comment.php?id_img='.$images['id_img'].'">
+                                    <img src="data:image/png;base64,'.$imgData.'" alt="Your Picture" class="everyone"><br><br>
+                                    </a>
+                                </div>';
+                        }
+                    }
+                }
     }
     else 
     {

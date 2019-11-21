@@ -17,15 +17,17 @@
 </head>
 <body>
     <header>
-       <nav>
-           <img id="logo" src="includes/logo.png" alt="logo">
+       <nav class="navigation-bar">
+       
+         <a href="index.php" id="link_logo"><img id="logo" src="includes/logo.png" alt="logo"></a>
+         <ul>
                <?php
                     if (isset($_SESSION['userid']))
                     {
                         // if ($_SESSION['is_verified'] == 1)
                         // {
                             echo'
-                            <ul>
+                            
                                 <li><a href="home.php">Home</a></li>
                                 <li><a href="profile.php">Profile</a></li>
                             </ul>
@@ -40,6 +42,11 @@
                     else 
                     {
                         echo '
+                        
+                            <li><a href="home.php">Home</a></li>
+                            <li><a href="home.php">Home</a></li>
+                            <li><a href="home.php">Home</a></li>
+                        </ul>
                         <div class="login-nav">
                             <form class="login-form-nav" action="forms/login.form.php" method="post">
                                 <input type="text" name="useremail" placeholder="Email...">

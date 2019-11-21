@@ -31,13 +31,12 @@ error_reporting(E_ALL);
         $uid_username = $_SESSION['useruid'];
         if (isset($_POST['comment_submit']))
         {
-            
             $comment = $_POST['comment'];
             if (!empty($comment))
             {
                 include_once '../config/setup.php';
                 
-                $sql = "INSERT INTO comments (id_img, id, uid_username, comment) VALUES (?,?,?)";
+                $sql = "INSERT INTO comments (id_img, id, uid_username, comment) VALUES (?,?,?,?)";
                 $stmt= $pdo->prepare($sql);
                 $stmt->execute([$id_img, $id, $uid_username, $comment]);
 
@@ -59,7 +58,7 @@ error_reporting(E_ALL);
 
                     // For email Notification
                     $subject = "Notification";
-                    $message = "<a href='http://localhost:8080/camagru/comment.php?id_img=$id_img'>Register Account</a>";
+                    $message = "<a href='http://localhost:8080/camagru/comment.php?id_img=$id_img'>Someone commented on your post</a>";
                     $headers = "From: sirmj.dube@gmail.com";
                     $headers .= "MIME-Version: 1.0"."\r\n";
                     $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";

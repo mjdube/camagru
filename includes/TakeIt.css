@@ -1,6 +1,4 @@
-* {
-    border: #ccc solid 1px;
-}
+
 
 ul li {
     display: inline;
@@ -21,6 +19,10 @@ ul {
     padding: 0;
     margin: 0;
     width: 50px;
+}
+
+li {
+    float: left;
 }
 
 

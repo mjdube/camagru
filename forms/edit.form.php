@@ -149,6 +149,25 @@
                 }
             }
         }
+
+        if (isset($_POST['off_submit']))
+        {
+            include_once '../config/setup.php';
+            $sql = "UPDATE users SET notify = 0 WHERE id = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$id]);
+            header("Location: ../editprofile.php");
+            exit();
+        }
+        else if (isset($_POST['on_submit']))
+        {
+            include_once '../config/setup.php';
+            $sql = "UPDATE users SET notify = 1 WHERE id = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$id]);
+            header("Location: ../editprofile.php");
+            exit();
+        }
     }
     else
     {

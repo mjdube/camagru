@@ -6,11 +6,12 @@
     {
         require 'config/setup.php';
         $id = intval($_SESSION['userid']);
+        
         $sql = "SELECT * FROM users WHERE id = ?";
-
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
         $info = $stmt->fetch(PDO::FETCH_ASSOC);
+        $notify = intval($info['notify']);
         echo 
         '<form action="forms/edit.form.php" method="post">
 
@@ -30,8 +31,21 @@
             <input type="password" name="pwd2" placeholder="Retype Password..."><br><br>
             <input type="password" name="current-pwd" placeholder="Current Password..."><br><br>
             <button type="submit" name="edit-password">Change Password</button><br><br>
-        </form>';
-
+            <h4>Notification Preference</h4>';
+        if ($notify == 1)
+        {    
+            echo '
+            <h5>Notification :</h5>
+            <button type="submit" name="off_submit">Off</button>
+             </form>';
+        }
+        else if ($notify == 0)
+        {
+            echo '
+            <h5>Notification :</h5>
+            <button type="submit" name="on_submit">On</button>
+             </form>';
+        }
     
     }
     else 
