@@ -85,7 +85,8 @@
         $sql = "CREATE TABLE IF NOT EXISTS likes (
             id_like int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
             id_img int(11) NOT NULL,
-            FOREIGN KEY (id_img) REFERENCES images(id_img)
+            FOREIGN KEY (id_img) REFERENCES images(id_img),
+            id int(11) NOT NULL
         );";
         $pdo->exec($sql);
     }

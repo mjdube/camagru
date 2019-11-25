@@ -31,9 +31,9 @@
                     if (in_array($fileActualExt, $allowed))
                     {
                         echo '
-                            <div class="box" height="500" width="900" >
+                            <div class="box">
                                 <a href="comment.php?id_img='.$images['id_img'].'">
-                                <img src="'.$images['imgName'].'" alt="Your Picture" class="everyone"><br><br>
+                                <img src="'.$images['imgName'].'" alt="Your Picture" class="everyone" width="700" height="500"><br><br>
                                 </a>
                             </div>';
                     }
@@ -41,9 +41,9 @@
                     {
                         $imgData = base64_encode($images['imgName']);
                         echo '
-                            <div class="box" height="500" width="900" >
+                            <div class="box">
                                 <a href="comment.php?id_img='.$images['id_img'].'">
-                                <img src="data:image/png;base64,'.$imgData.'" alt="Your Picture" class="everyone"><br><br>
+                                <img src="data:image/png;base64,'.$imgData.'" alt="Your Picture" class="everyone" width="700" height="500"><br><br>
                                 </a>
                             </div>';
                     }

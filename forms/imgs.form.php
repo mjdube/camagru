@@ -111,7 +111,7 @@ if ($_SESSION['userid'])
         $img = explode(",", $_POST['photo']);
         $uid_username = $_SESSION['useruid'];
         $imgData = $img[1];
-        $check = strlen($imageData);
+        $check = strlen($imgData);
         if ($check != 0)
         {
             $imgData = base64_decode($imgData);
@@ -128,18 +128,18 @@ if ($_SESSION['userid'])
             header("Location: ../home.php?uploadfail");
             exit();
         }
-//     }
-//     else 
-//     {
-//         header("Location: ../home.php");
-//         exit();
-//     }
-// }
-// else 
-// {
-//     header("Location: ../index.php");
-//     exit();
-// }
+    }
+    else 
+    {
+        header("Location: ../home.php");
+        exit();
+    }
+}
+else 
+{
+    header("Location: ../index.php");
+    exit();
+}
 
 //         isset($_POST['snap'])){
 //         $img = explode("," ,$_POST['img']);
@@ -185,3 +185,4 @@ if ($_SESSION['userid'])
 //     // tells the web that this page is an image page
 //     header("content-type: image/$imgType");
 // }
+    

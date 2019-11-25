@@ -27,6 +27,7 @@ error_reporting(E_ALL);
     if (isset($_SESSION['userid']))
     {
         $id_img = intval($_GET['id_img']);
+
         $id = intval($_SESSION['userid']);
         $uid_username = $_SESSION['useruid'];
         if (isset($_POST['comment_submit']))
@@ -44,10 +45,10 @@ error_reporting(E_ALL);
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([$id_img]);
                 $images = $stmt->fetch(PDO::FETCH_ASSOC);
-                $id_img = intval($images['id']);
+                $id_image = intval($images['id']);
 
                 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
-                $stmt->execute([$id_img]);
+                $stmt->execute([$id_image]);
                 $users = $stmt->fetch(PDO::FETCH_ASSOC);
                 $user_notify = intval($users['notify']);
                 $user_id = intval($users['id']);
@@ -84,9 +85,10 @@ error_reporting(E_ALL);
         if (isset($_POST['like_submit']))
         {
             include_once '../config/setup.php';
-            $sql = "INSERT INTO likes (id_img) VALUES (?) ";
+            $user_id = intval($_SESSION['userid']);
+            $sql = "INSERT INTO likes (id_img, id) VALUES (?, ?) ";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$id_img]);
+            $stmt->execute([$id_img, $user_id]);
             header("Location: ../comment.php?id_img=".$id_img);
             exit();
         }

@@ -65,13 +65,11 @@
         $stmt->execute([$id_img]);
         $images = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        echo '<img src="data:image/png;base64,'.base64_encode($images['imgName']).'" alt="Your Picture" class="everyone">';
+        echo '<img src="data:image/png;base64,'.base64_encode($images['imgName']).'" alt="Your Picture" class="everyone" width="700" height="500">';
         $sql = "SELECT * FROM likes WHERE id_img = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id_img]);
         $likes = $stmt->rowCount();
-        echo
-            '<button type="submit" name="like_submit">Like('.$likes.')</button>';
     
         $sql = "SELECT * FROM comments WHERE id_img = ? ORDER BY commentDateTime DESC";
         $stmt = $pdo->prepare($sql);
