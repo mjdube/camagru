@@ -110,28 +110,36 @@ if ($_SESSION['userid'])
     {
         $img = explode(",", $_POST['photo']);
         $uid_username = $_SESSION['useruid'];
-        var_dump( $img);
         $imgData = $img[1];
-        $imgData = base64_decode($imgData);
-        $id = $_SESSION['userid'];
-        include_once '../config/setup.php';
-        $sql = "INSERT INTO images (id, uid_username, imgName) VALUES (?, ?, ?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$id, $uid_username, $imgData]);
-        header("Location: ../home.php?success");
-        exit();
-    }
-    else 
-    {
-        header("Location: ../home.php");
-        exit();
-    }
-}
-else 
-{
-    header("Location: ../index.php");
-    exit();
-}
+        $check = strlen($imageData);
+        if ($check != 0)
+        {
+            $imgData = base64_decode($imgData);
+            $id = $_SESSION['userid'];
+            include_once '../config/setup.php';
+            $sql = "INSERT INTO images (id, uid_username, imgName) VALUES (?, ?, ?)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$id, $uid_username, $imgData]);
+            header("Location: ../home.php?success");
+            exit();
+        }
+        else 
+        {
+            header("Location: ../home.php?uploadfail");
+            exit();
+        }
+//     }
+//     else 
+//     {
+//         header("Location: ../home.php");
+//         exit();
+//     }
+// }
+// else 
+// {
+//     header("Location: ../index.php");
+//     exit();
+// }
 
 //         isset($_POST['snap'])){
 //         $img = explode("," ,$_POST['img']);
