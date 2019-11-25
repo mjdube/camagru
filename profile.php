@@ -11,18 +11,37 @@
             <a href="editprofile.php">Edit Profile</a>
             <?php
             echo '<div>';
-            include_once 'config/database.php';
-            $pdo = new PDO($DB_dsn, $DB_USER, $DB_PASSWORD);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $uid_username = $_SESSION['useruid'];
-            $sql = "SELECT * FROM images WHERE uid_username = ? ORDER BY imgDateTime DESC";
+            include_once 'config/setup.php';
+            $user_id = intval($_SESSION['userid']);
+            // $uid_username = $_SESSION['useruid'];
+            $sql = "SELECT * FROM images WHERE id = ? ORDER BY imgDateTime DESC";
             if (!($stmt = $pdo->prepare($sql)))
             {
-                echo "SQL error 3";
+                header("Location: profile.php");
+                exit();
             }
             else 
             {
-                $stmt->execute([$uid_username]);
+                $stmt->execute([$user_id]);
+                $result = $stmt->rowCount();
+                    
+                $results_per_page = 5;
+                $number_of_pages = ceil($result/$results_per_page);
+                    
+                if (!(isset($_GET['page'])))
+                    $page = 1;
+                else 
+                    $page = $_GET['page'];
+                    
+           
+                $this_page_first_result = ($page - 1) * $results_per_page;
+                $new = intval($this_page_first_result);
+                    
+
+                include_once 'config/setup.php';
+                $sql = "SELECT * FROM images WHERE id = ? ORDER BY imgDateTime DESC LIMIT ".$new.",".$results_per_page;
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$user_id]);
                 while ($images = $stmt->fetch(PDO::FETCH_ASSOC))
                 {
                     $image = explode(".", $images['imgName']);
@@ -41,12 +60,16 @@
                     {
                         $imgData = base64_encode($images['imgName']);
                         echo '
-                            <div class="box">
+                            <div class="box" height="500" width="900" >
                                 <a href="comment.php?id_img='.$images['id_img'].'">
                                 <img src="data:image/png;base64,'.$imgData.'" alt="Your Picture" class="everyone" width="700" height="500"><br><br>
                                 </a>
                             </div>';
                     }
+                }
+                for ($page = 1; $page <= $number_of_pages; $page++)
+                {
+                    echo '<a href="profile.php?page='.$page.'">'.$page.'</a>';
                 }
  
             }
@@ -60,7 +83,7 @@
         else
         {
             header("Location: index.php");
-
+            exit();
         }
     require 'structure/footer.struc.php';
 ?>
