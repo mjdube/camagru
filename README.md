@@ -1,2 +1,2 @@
 # camagru
-Creating a small web application allowing you to make basic photo and video editing using your webcam. Similar to the instagram app
+This is my first web project from wethinkcode that I did individually. I went about the procedural way rather than the object oriented way of programming. To develop this I had to use html, php, mysql, apache and javascript. The task was to develop a webapp that will allow users to sign up, login, and post pictures online to show off to the rest of the world and they be able to comment, like and get notified if their picture was commented on their pictures. I had to make users have an option to update the profile, change their email, username or password.
