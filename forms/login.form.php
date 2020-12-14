@@ -48,7 +48,8 @@ error_reporting(E_ALL);
                         $_SESSION['useruid'] = $result['uid_username'];
                         $_SESSION['is_verified'] = $result['verify'];
                         $_SESSION['notify'] = $result['notify'];
-                        // head in 
+
+                        // Changing the URL to Login     
                         header("Location: ../home.php?login=success");
                         exit();
                     }

@@ -7,10 +7,10 @@
             ?>
             <a href="editprofile.php"></a>
             <!--  Display username -->
-            <h3 class="profile-username">Username</h3>
-            <a href="editprofile.php">Edit Profile</a>
+            <h1 class="display-3 text-center"><?php echo $_SESSION['useruid']?></h1>
+            <a href="editprofile.php" class="text-center">Edit Profile</a>
             <?php
-            echo '<div>';
+            echo '<div class="container">';
             include_once 'config/setup.php';
             $user_id = intval($_SESSION['userid']);
             // $uid_username = $_SESSION['useruid'];
@@ -50,27 +50,38 @@
                     if (in_array($fileActualExt, $allowed))
                     {
                         echo '
-                            <div class="box">
+                            
                                 <a href="comment.php?id_img='.$images['id_img'].'">
-                                <img src="'.$images['imgName'].'" alt="Your Picture" class="everyone" width="700" height="500"><br><br>
+                                <img src="'.$images['imgName'].'" alt="Your Picture" class="img-thumbnail">
                                 </a>
-                            </div>';
+                            ';
                     }
                     else 
                     {
                         $imgData = base64_encode($images['imgName']);
                         echo '
-                            <div class="box" height="500" width="900" >
+                            
                                 <a href="comment.php?id_img='.$images['id_img'].'">
-                                <img src="data:image/png;base64,'.$imgData.'" alt="Your Picture" class="everyone" width="700" height="500"><br><br>
+                                <img src="data:image/png;base64,'.$imgData.'" alt="Your Picture" class="img-thumbnail" width="700" height="500" ><br><br>
                                 </a>
-                            </div>';
+                            ';
                     }
                 }
-                for ($page = 1; $page <= $number_of_pages; $page++)
-                {
-                    echo '<a href="profile.php?page='.$page.'">'.$page.'</a>';
-                }
+                
+                echo '
+        
+
+        <div class="container">
+        <nav aria-label="Page navigation example" class="text-center">
+        <ul class="pagination">
+        ';
+        for ($page = 1; $page <= $number_of_pages; $page++) {
+            echo '<li class="page-item"><a class="page-link" href="profile.php?page=' . $page . '">' . $page . '</a></li>';
+        }
+        echo '
+        </ul>
+        </nav>
+        </div>';
  
             }
             echo '</div>
