@@ -59,7 +59,7 @@ error_reporting(E_ALL);
 
                     // For email Notification
                     $subject = "Notification";
-                    $message = "<a href='http://localhost:8080/camagru/comment.php?id_img=$id_img'>Someone commented on your post</a>";
+                    $message = "<a href='http://localhost/camagru/comment.php?id_img=$id_img'>Someone commented on your post</a>";
                     $headers = "From: sirmj.dube@gmail.com";
                     $headers .= "MIME-Version: 1.0"."\r\n";
                     $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
