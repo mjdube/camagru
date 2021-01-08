@@ -14,25 +14,31 @@
         $notify = intval($info['notify']);
         echo 
         '<div class="container">
-        <form action="forms/edit.form.php" method="post">
-
+        <form action="forms/edit.form.php" method="POST">
             <h4 class="text-center">Current Username: '.$info['uid_username'].'</h4>
             <input type="text" class="form-control" name="username" placeholder="Change Username..."><br>
             <input type="password" class="form-control" name="current-pwd-username" placeholder="Password..."><br>
             <button type="submit" name="change_username" class="btn btn-primary">Change Username</button>
             <br>
-
+        </form>
+        
+        <form action="forms/edit.form.php" method="POST">
             <h4 class="text-center">Current Email: '.$info['email'].'</h4>
             <input type="email" name="email" class="form-control" placeholder="Change Email..."><br>
             <input type="password" name="current-pwd-email" class="form-control" placeholder="Password..."><br>
             <button type="submit" name="change_email" class="btn btn-primary">Change Email</button>
-
             <br>
+        </form>
+        
+        <form action="forms/edit.form.php" method="POST">    
             <h4 class="text-center">Change your password</h4>
             <input type="password" name="pwd1" class="form-control" placeholder="Change Password..."><br>
             <input type="password" name="pwd2" class="form-control" placeholder="Retype Password..."><br>
             <input type="password" name="current-pwd" class="form-control" placeholder="Current Password..."><br>
             <button class="btn btn-primary" type="submit" name="edit-password">Change Password</button><br><br>
+        </form>        
+        
+        <form action="forms/edit.form.php" method="POST">    
             <h4>Notification Preference</h4>';
         if ($notify == 1)
         {    

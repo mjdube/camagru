@@ -41,7 +41,7 @@
             }
             else 
             {
-                header("Location: ../editprofile.php?empty");
+                header("Location: ../editprofile.php?emptyWHY");
                 exit();
             }
         }
@@ -79,8 +79,8 @@
 
                         // For email verification
                         $subject = "Email Verfication";
-                        $message = "<a href='http://localhost:8080/camagru/verifyemail.php?vkey=$vKey'>Email Account</a>";
-                        $headers = "From: sirmj.dube@gmail.com";
+                        $message = "<a href='http://localhost/camagru/verifyemail.php?vkey=$vKey'>Email Account</a>";
+                        $headers = "From: mlungisi.dube.1994@gmail.com";
                         $headers .= "MIME-Version: 1.0"."\r\n";
                         $headers .= "Content-type:text/html;charset=UTF-8"."\r\n";
                         
